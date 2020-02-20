@@ -1,0 +1,39 @@
+package KieRule;
+import com.drools.Order;
+import com.drools.model.User;
+import com.drools.model.Product;
+
+import java.util.List;
+import org.apache.commons.collections4.CollectionUtils;
+
+global java.util.List userProductsList;
+
+function int compareTwoLists (List firstList, List secondList) {
+    return CollectionUtils.intersection(firstList, secondList).size();
+}
+
+rule "Forbidden products"
+
+when
+product : Product (composition.size() != 0)
+user: User (forbiddenProducts.size() != 0, forbiddenProducts not contains product.name,
+compareTwoLists(product.composition, forbiddenProducts) == 0)
+then
+userProductsList.add(product);
+end;
+
+rule "ICICI"
+
+when
+orderObject : Order (cardType == "ICICI" && price > 15000);
+then
+orderObject.setDiscount(8);
+end;
+
+rule "DBS"
+
+when
+orderObject : Order (cardType == "DBS" && price > 15000);
+then
+orderObject.setDiscount(15);
+end;
