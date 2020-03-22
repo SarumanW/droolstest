@@ -37,8 +37,6 @@ public class ProductController {
 
         session.fireAllRules();
 
-        return products.stream()
-                .filter(Product::isShowToUser)
-                .collect(Collectors.toList());
+        return products;
     }
 }

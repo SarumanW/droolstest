@@ -5,17 +5,17 @@ import com.drools.model.Product;
 import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 
-global java.util.List userProductsList;
+global java.util.Map userProductsMap;
 
 function int compareTwoLists (List firstList, List secondList) {
     return CollectionUtils.intersection(firstList, secondList).size();
 }
 
 rule "Forbidden products"
-
+timer ( cron:* 0/15 * * * ? )
 when
 product : Product (composition.size() != 0)
 user: User (forbiddenItems.size() != 0, compareTwoLists(product.composition, user.forbiddenItems) > 0)
 then
-product.setShowToUser(true);
+userProductsMap.put(user.getId(), product);
 end;

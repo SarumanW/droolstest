@@ -24,8 +24,6 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "item_id"))
     private List<Item> composition;
 
-    private boolean showToUser;
-
     private String name;
 
     public Product(String name, List<Item> composition) {
