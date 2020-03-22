@@ -30,8 +30,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Item> forbiddenItems;
 
-    @ElementCollection
-    private List<String> followedDiets;
+    @ManyToMany
+    @JoinTable(
+            name = "user_diet",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "diet_id"))
+    private List<Diet> followedDiets;
 
     private boolean supportsSeasonality;
 
