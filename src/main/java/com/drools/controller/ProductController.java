@@ -1,8 +1,8 @@
 package com.drools.controller;
 
-import com.drools.model.Item;
-import com.drools.model.Product;
-import com.drools.model.User;
+import com.drools.model.entity.Item;
+import com.drools.model.entity.Product;
+import com.drools.model.entity.User;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class ProductController {

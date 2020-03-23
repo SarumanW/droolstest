@@ -1,6 +1,6 @@
 package com.drools.config;
 
-import com.drools.model.Product;
+import com.drools.model.entity.Product;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
