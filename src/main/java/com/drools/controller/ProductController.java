@@ -22,8 +22,8 @@ public class ProductController {
 
     ProductController() {
         products = new ArrayList<>();
-        products.add(new Product("milk", Collections.singletonList(new Item(1L, "milk"))));
-        products.add(new Product("coffee", Collections.singletonList(new Item(2L, "coffee"))));
+        products.add(new Product("milk", Collections.singletonList(new Item(1L, "milk", false))));
+        products.add(new Product("coffee", Collections.singletonList(new Item(2L, "coffee", false))));
     }
 
     @PostMapping("/order")

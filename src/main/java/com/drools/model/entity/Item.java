@@ -22,5 +22,5 @@ public class Item {
 
     private String name;
 
-    private boolean isRare;
+    private boolean rare;
 }

@@ -1,5 +1,6 @@
 package com.drools.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @SequenceGenerator(name = "user_seq", allocationSize = 1)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
 
     @Id
@@ -41,6 +43,6 @@ public class User {
     private boolean supportsSeasonality;
 
     @OneToMany(mappedBy = "user")
-    @Where(clause = "is_shown = true")
+    @Where(clause = "shown = true")
     private Set<RelationUserProduct> userProducts;
 }

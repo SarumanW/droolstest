@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/survey")
+@RequestMapping("/api/survey")
 public class SurveyController {
 
     @Autowired
@@ -23,6 +23,8 @@ public class SurveyController {
 
     @Autowired
     private ItemRepository itemRepository;
+
+    //TODO: implement authorization
 
     @GetMapping("/getQuestions")
     public List<QuestionModel> getQuestions() {

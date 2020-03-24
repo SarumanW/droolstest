@@ -25,5 +25,5 @@ public class RelationUserProduct {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private boolean isShown;
+    private boolean shown;
 }

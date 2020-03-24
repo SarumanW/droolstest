@@ -1,6 +1,6 @@
 package KieRule;
-import com.drools.model.User;
-import com.drools.model.Product;
+import com.drools.model.entity.User;
+import com.drools.model.entity.Product;
 
 import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
