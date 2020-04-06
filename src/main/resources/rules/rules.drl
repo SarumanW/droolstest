@@ -1,9 +1,12 @@
 package KieRule;
 import com.drools.model.entity.User;
 import com.drools.model.entity.Product;
+import com.drools.model.entity.Diet;
+import com.drools.model.entity.Diet.DietType;
 
 import java.util.List;
-import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils
+import java.util.stream.Collectors;
 
 global java.util.Map userProductsMap;
 
@@ -11,11 +14,26 @@ function int compareTwoLists (List firstList, List secondList) {
     return CollectionUtils.intersection(firstList, secondList).size();
 }
 
+function boolean dietAvailable(List list, String property) {
+    return ((List<Object>)list.stream()
+    .filter(o -> ((Diet)o).getName().equals(property))
+    .collect(Collectors.toList())).size() > 0;
+}
+
 rule "Forbidden products"
 timer ( cron:* 0/15 * * * ? )
 when
 product : Product (composition.size() != 0)
 user: User (forbiddenItems.size() != 0, compareTwoLists(product.composition, user.forbiddenItems) > 0)
+then
+userProductsMap.put(user.getId(), product);
+end;
+
+rule "Fat loss"
+timer ( cron:* 0/15 * * * ? )
+when
+product : Product()
+user: User (dietAvailable(followedDiets, DietType.FAT_LOSS.getDietName()))
 then
 userProductsMap.put(user.getId(), product);
 end;

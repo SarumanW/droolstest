@@ -22,5 +22,7 @@ public class Item {
 
     private String name;
 
+    //private Nutrition nutrition;
+
     private boolean rare;
 }
