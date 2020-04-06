@@ -24,8 +24,6 @@ public class SurveyController {
     @Autowired
     private ItemRepository itemRepository;
 
-    //TODO: implement authorization
-
     @GetMapping("/getQuestions")
     public List<QuestionModel> getQuestions() {
         QuestionModel diets = new QuestionModel(Question.DIETS_QUESTION.getText(),

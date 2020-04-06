@@ -69,7 +69,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         UserRepository userRepository = webApplicationContext.getBean(UserRepository.class);
 
-        //TODO: check gson mapping of null values
         res.getWriter().write(new Gson().toJson(userRepository.findByLogin(
                 ((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername())));
     }
