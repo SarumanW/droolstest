@@ -47,9 +47,22 @@ public class UsdaController {
         List<FoodItem> asList = mapper.readValue(res, new TypeReference<>() {
         });
 
+        String collectString = asList.stream()
+                .map(FoodItem::getDescription)
+                .collect(Collectors.joining("/"));
+
+        String[] foodItemsNamesTranslated =
+                Translator.translate("en", "ru", collectString)
+                .split("/");
+
+
+
+
         return asList.stream()
                 //.map(FoodItem::getDescription)
                 .map(i -> Translator.translate("en", "ru", i.getDescription()))
                 .collect(Collectors.toList());
     }
 }
+
+//TODO: map fooditem to entity food item and save to database with two languages included

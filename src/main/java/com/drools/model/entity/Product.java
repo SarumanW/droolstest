@@ -23,12 +23,31 @@ public class Product {
             name = "product_item",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id"))
-    private List<Item> composition;
+    private List<Product> composition;
+
+    @ManyToMany
+    @JoinTable(
+            name = "product_item",
+            joinColumns = @JoinColumn(name = "item_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    @Transient
+    private List<Product> isInProduct;
 
     private String name;
 
-    public Product(String name, List<Item> composition) {
+    private String nameTranslated;
+
+    @OneToMany(mappedBy = "product")
+    private List<RelationProductNutrition> nutritionFacts;
+
+    private boolean rare;
+
+    public Product(String name, List<Product> composition) {
         this.name = name;
         this.composition = composition;
+    }
+
+    public enum ProductType {
+        FOUNDATION, BRANDED
     }
 }

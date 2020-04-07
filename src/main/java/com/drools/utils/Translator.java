@@ -8,12 +8,11 @@ import java.net.URL;
 import java.util.stream.Collectors;
 
 public class Translator {
-    private static final String CLIENT_ID = "FREE_TRIAL_ACCOUNT";
-    private static final String CLIENT_SECRET = "PUBLIC_SECRET";
+    private static final String CLIENT_ID = "olgasergeevna0803@gmail.com";
+    private static final String CLIENT_SECRET = "b91dc1fbfea94804bb7398c0f8a5049f";
     private static final String ENDPOINT = "http://api.whatsmate.net/v1/translation/translate";
 
     public static void main(String[] args) {
-        // TODO: Specify your translation requirements here:
         String fromLang = "en";
         String toLang = "ru";
         String text = "Bananas, overripe, raw";

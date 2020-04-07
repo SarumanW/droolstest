@@ -10,11 +10,10 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@SequenceGenerator(name = "user_prod_seq", allocationSize = 1)
-public class RelationUserProduct {
-
+@SequenceGenerator(name = "prod_nutr_seq", allocationSize = 1)
+public class RelationProductNutrition {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_prod_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prod_nutr_seq")
     private Long id;
 
     @ManyToOne
@@ -22,10 +21,8 @@ public class RelationUserProduct {
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "nutrition_fact_id")
+    private NutritionFact nutritionFact;
 
-    private boolean shown;
-
-    private boolean forbidden;
+    private double value;
 }

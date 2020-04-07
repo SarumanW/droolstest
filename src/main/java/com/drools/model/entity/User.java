@@ -9,7 +9,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Set;
 
@@ -32,14 +31,6 @@ public class User {
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany
     @JoinTable(
-            name = "user_item",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Item> forbiddenItems;
-
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToMany
-    @JoinTable(
             name = "user_diet",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "diet_id"))
@@ -50,5 +41,10 @@ public class User {
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "user")
     @Where(clause = "shown = true")
-    private Set<RelationUserProduct> userProducts;
+    private List<RelationUserProduct> userProducts;
+
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "user")
+    @Where(clause = "forbidden = true")
+    private List<RelationUserProduct> forbiddenProducts;
 }

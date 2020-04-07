@@ -1,4 +1,4 @@
-package com.drools.model;
+package com.drools.model.survey;
 
 public enum Question {
     DIETS_QUESTION("Оберіть пункти, які найкраще вас описують"),

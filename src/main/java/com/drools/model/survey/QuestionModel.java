@@ -1,4 +1,4 @@
-package com.drools.model;
+package com.drools.model.survey;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
