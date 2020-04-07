@@ -1,10 +1,14 @@
 package com.drools.controller;
 
+import com.drools.model.entity.NutritionFact;
+import com.drools.model.entity.Product;
+import com.drools.model.entity.RelationProductNutrition;
 import com.drools.model.usda.FoodItem;
-import com.drools.utils.Translator;
+import com.drools.repository.ProductNutritionRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.utils.URIBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,12 +19,16 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/usda")
 public class UsdaController {
+
+    @Autowired
+    private ProductNutritionRepository productNutritionRepository;
 
     @GetMapping("/foods")
     public List<String> getFoodsList() throws IOException, InterruptedException, URISyntaxException {
@@ -44,25 +52,42 @@ public class UsdaController {
                 .body();
         ObjectMapper mapper = new ObjectMapper();
 
-        List<FoodItem> asList = mapper.readValue(res, new TypeReference<>() {
+        List<FoodItem> foodItemList = mapper.readValue(res, new TypeReference<>() {
         });
 
-        String collectString = asList.stream()
+//        String collectString = foodItemList.stream()
+//                .map(FoodItem::getDescription)
+//                .collect(Collectors.joining(" 00 "));
+//
+//        String[] foodItemsNamesTranslated =
+//                Translator.translate("en", "ru", collectString.substring(0, collectString.length()/2))
+//                        .split(" 00 ");
+
+
+        List<RelationProductNutrition> productNutritions = new ArrayList<>();
+
+        for (int i = 0; i < foodItemList.size(); i++) {
+            FoodItem foodItem = foodItemList.get(i);
+
+            Product product = new Product(foodItem.getFdcId(), foodItem.getDescription(),
+                    "", Product.ProductType.FOUNDATION);
+
+            for (NutritionFact nutritionFact : NutritionFact.NutritionFacts.getNutritionFacts()) {
+                foodItem.getFoodNutrients()
+                        .stream()
+                        .filter(n -> n.getNumber().equals(nutritionFact.getId().toString()))
+                        .findFirst()
+                        .ifPresent(foodNutrient ->
+                                productNutritions.add(new RelationProductNutrition(product, nutritionFact,
+                                        Double.valueOf(foodNutrient.getAmount()))));
+
+            }
+        }
+
+        productNutritionRepository.saveAll(productNutritions);
+
+        return foodItemList.stream()
                 .map(FoodItem::getDescription)
-                .collect(Collectors.joining("/"));
-
-        String[] foodItemsNamesTranslated =
-                Translator.translate("en", "ru", collectString)
-                .split("/");
-
-
-
-
-        return asList.stream()
-                //.map(FoodItem::getDescription)
-                .map(i -> Translator.translate("en", "ru", i.getDescription()))
                 .collect(Collectors.toList());
     }
 }
-
-//TODO: map fooditem to entity food item and save to database with two languages included

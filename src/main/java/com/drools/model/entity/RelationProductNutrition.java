@@ -16,7 +16,7 @@ public class RelationProductNutrition {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prod_nutr_seq")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private Product product;
 
@@ -25,4 +25,10 @@ public class RelationProductNutrition {
     private NutritionFact nutritionFact;
 
     private double value;
+
+    public RelationProductNutrition(Product product, NutritionFact nutritionFact, Double value) {
+        this.product = product;
+        this.nutritionFact = nutritionFact;
+        this.value = value;
+    }
 }

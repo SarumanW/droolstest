@@ -4,7 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Data
@@ -29,6 +33,12 @@ public class NutritionFact {
         NutritionFacts(String code, String name) {
             this.code = code;
             this.name = name;
+        }
+
+        public static List<NutritionFact> getNutritionFacts() {
+            return Arrays.stream(NutritionFacts.values())
+                    .map(facts -> new NutritionFact(Long.valueOf(facts.code), facts.name))
+                    .collect(Collectors.toList());
         }
     }
 
