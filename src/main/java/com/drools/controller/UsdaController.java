@@ -55,22 +55,11 @@ public class UsdaController {
         List<FoodItem> foodItemList = mapper.readValue(res, new TypeReference<>() {
         });
 
-//        String collectString = foodItemList.stream()
-//                .map(FoodItem::getDescription)
-//                .collect(Collectors.joining(" 00 "));
-//
-//        String[] foodItemsNamesTranslated =
-//                Translator.translate("en", "ru", collectString.substring(0, collectString.length()/2))
-//                        .split(" 00 ");
-
-
         List<RelationProductNutrition> productNutritions = new ArrayList<>();
 
-        for (int i = 0; i < foodItemList.size(); i++) {
-            FoodItem foodItem = foodItemList.get(i);
-
+        for (FoodItem foodItem : foodItemList) {
             Product product = new Product(foodItem.getFdcId(), foodItem.getDescription(),
-                    "", Product.ProductType.FOUNDATION);
+                    Product.ProductType.FOUNDATION);
 
             for (NutritionFact nutritionFact : NutritionFact.NutritionFacts.getNutritionFacts()) {
                 foodItem.getFoodNutrients()

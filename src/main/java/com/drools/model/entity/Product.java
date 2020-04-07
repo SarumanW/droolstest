@@ -35,8 +35,6 @@ public class Product {
 
     private String name;
 
-    private String nameTranslated;
-
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<RelationProductNutrition> nutritionFacts;
 
@@ -50,10 +48,9 @@ public class Product {
         this.composition = composition;
     }
 
-    public Product(String id, String name, String nameTranslated, ProductType productType) {
+    public Product(String id, String name, ProductType productType) {
         this.id = Long.valueOf(id);
         this.name = name;
-        this.nameTranslated = nameTranslated;
         this.productType = productType;
     }
 
