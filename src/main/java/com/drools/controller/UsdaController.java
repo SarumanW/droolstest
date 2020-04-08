@@ -80,15 +80,12 @@ public class UsdaController {
 
         return detailedFoodItemsInfo;
     }
-
-    //TODO: fix this method
+    
     private List<FoodItem> getDetailedFoodItemsInfo(List<Integer> foodItemsIds) {
         List<FoodItem> foodItems = new ArrayList<>();
 
-        int totalCallsCount = foodItemsIds.size() / 20 + 1;
-
         try {
-            for (int i = 0; i <= totalCallsCount; i += 20) {
+            for (int i = 0; i <= foodItemsIds.size(); i += 20) {
                 HttpClient client = HttpClient.newHttpClient();
 
                 URIBuilder builder = new URIBuilder();
