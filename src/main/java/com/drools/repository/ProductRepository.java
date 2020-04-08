@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface ProductRepository extends CrudRepository<Product, Long> {
 
-    public List<Product> findAllByRareIsTrue();
 }

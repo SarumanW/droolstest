@@ -1,9 +1,14 @@
 package com.drools.controller;
 
+import com.drools.model.entity.Ingredient;
 import com.drools.model.entity.NutritionFact;
 import com.drools.model.entity.Product;
 import com.drools.model.entity.RelationProductNutrition;
+import com.drools.model.usda.FoodIngredient;
 import com.drools.model.usda.FoodItem;
+import com.drools.model.usda.FoodsSearchCriteria;
+import com.drools.model.usda.SimpleFoodItem;
+import com.drools.repository.IngredientRepository;
 import com.drools.repository.ProductNutritionRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,56 +32,134 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/usda")
 public class UsdaController {
 
+    private static final int PAGE_SIZE = 200;
+    private static final Integer[] MAIN_NUTRITION_IDS = {203, 204, 205, 208};
+
     @Autowired
     private ProductNutritionRepository productNutritionRepository;
 
+    @Autowired
+    private IngredientRepository ingredientRepository;
+
     @GetMapping("/foods")
-    public List<String> getFoodsList() throws IOException, InterruptedException, URISyntaxException {
+    public List<FoodItem> getFoodsList() {
 
-        HttpClient client = HttpClient.newHttpClient();
+        List<Integer> surveyFoods = this.getSurveyFoodsIds();
 
-        URIBuilder builder = new URIBuilder();
-        builder.setScheme("https").setHost("api.nal.usda.gov").setPath("/fdc/v1/foods/list")
-                .setParameter("dataType", "Foundation")
-                .setParameter("pageSize", "200")
-                .setParameter("api_key", "8ym093tKGYh1r2iecUggVFyU1zveNHcr9eRE6yWZ");
-        URI uri = builder.build();
-
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(uri)
-                .GET()
-                .build();
-
-        String res = client.send(request,
-                HttpResponse.BodyHandlers.ofString())
-                .body();
-        ObjectMapper mapper = new ObjectMapper();
-
-        List<FoodItem> foodItemList = mapper.readValue(res, new TypeReference<>() {
-        });
+        List<FoodItem> detailedFoodItemsInfo = this.getDetailedFoodItemsInfo(surveyFoods);
 
         List<RelationProductNutrition> productNutritions = new ArrayList<>();
+        for (FoodItem foodItem : detailedFoodItemsInfo) {
+            Product product = new Product(foodItem.getFdcId(), foodItem.getFoodCode(), foodItem.getDescription());
 
-        for (FoodItem foodItem : foodItemList) {
-            Product product = new Product(foodItem.getFdcId(), foodItem.getDescription(),
-                    Product.ProductType.FOUNDATION);
+            for (FoodIngredient foodIngredient : foodItem.getInputFoods()) {
+                product.getComposition().add(new Ingredient(foodIngredient.getIngredientCode(),
+                        foodIngredient.getFoodDescription()));
+            }
 
             for (NutritionFact nutritionFact : NutritionFact.NutritionFacts.getNutritionFacts()) {
                 foodItem.getFoodNutrients()
                         .stream()
-                        .filter(n -> n.getNumber().equals(nutritionFact.getId().toString()))
+                        .filter(n -> n.getNutrient().getNumber().equals(nutritionFact.getId().toString()))
                         .findFirst()
                         .ifPresent(foodNutrient ->
                                 productNutritions.add(new RelationProductNutrition(product, nutritionFact,
-                                        Double.valueOf(foodNutrient.getAmount()))));
+                                        foodNutrient.getAmount())));
 
             }
         }
 
+        List<Ingredient> distinctIngredients = productNutritions.stream()
+                .map(RelationProductNutrition::getProduct)
+                .flatMap(product -> product.getComposition().stream())
+                .distinct()
+                .collect(Collectors.toList());
+        ingredientRepository.saveAll(distinctIngredients);
+
         productNutritionRepository.saveAll(productNutritions);
 
-        return foodItemList.stream()
-                .map(FoodItem::getDescription)
+        return detailedFoodItemsInfo;
+    }
+
+    //TODO: fix this method
+    private List<FoodItem> getDetailedFoodItemsInfo(List<Integer> foodItemsIds) {
+        List<FoodItem> foodItems = new ArrayList<>();
+
+        int totalCallsCount = foodItemsIds.size() / 20 + 1;
+
+        try {
+            for (int i = 0; i <= totalCallsCount; i += 20) {
+                HttpClient client = HttpClient.newHttpClient();
+
+                URIBuilder builder = new URIBuilder();
+                builder.setScheme("https").setHost("api.nal.usda.gov").setPath("/fdc/v1/foods")
+                        .setParameter("api_key", "8ym093tKGYh1r2iecUggVFyU1zveNHcr9eRE6yWZ");
+                URI uri = builder.build();
+
+                FoodsSearchCriteria foodsSearchCriteria = new FoodsSearchCriteria(
+                        foodItemsIds.subList(i, i + 20 >= foodItemsIds.size() ? foodItemsIds.size() : i + 20),
+                        "full", MAIN_NUTRITION_IDS);
+                ObjectMapper objectMapper = new ObjectMapper();
+                String requestBody = objectMapper
+                        .writerWithDefaultPrettyPrinter()
+                        .writeValueAsString(foodsSearchCriteria);
+
+                HttpRequest request = HttpRequest.newBuilder()
+                        .header("Content-Type", "application/json")
+                        .uri(uri)
+                        .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                        .build();
+
+                String res = client.send(request,
+                        HttpResponse.BodyHandlers.ofString())
+                        .body();
+                ObjectMapper mapper = new ObjectMapper();
+
+                foodItems.addAll(mapper.readValue(res, new TypeReference<>() {
+                }));
+            }
+        } catch (URISyntaxException | InterruptedException | IOException e) {
+            e.printStackTrace();
+        }
+
+        return foodItems;
+    }
+
+    private List<Integer> getSurveyFoodsIds() {
+        List<SimpleFoodItem> simpleFoodItems = new ArrayList<>();
+
+        try {
+            //TODO: make api call to be universal
+            for (int i = 1; i <= 44; i++) {
+                HttpClient client = HttpClient.newHttpClient();
+
+                URIBuilder builder = new URIBuilder();
+                builder.setScheme("https").setHost("api.nal.usda.gov").setPath("/fdc/v1/foods/list")
+                        .setParameter("dataType", "Survey (FNDDS)")
+                        .setParameter("pageSize", String.valueOf(PAGE_SIZE))
+                        .setParameter("pageNumber", String.valueOf(i))
+                        .setParameter("api_key", "8ym093tKGYh1r2iecUggVFyU1zveNHcr9eRE6yWZ");
+                URI uri = builder.build();
+
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(uri)
+                        .GET()
+                        .build();
+
+                String res = client.send(request,
+                        HttpResponse.BodyHandlers.ofString())
+                        .body();
+                ObjectMapper mapper = new ObjectMapper();
+
+                simpleFoodItems.addAll(mapper.readValue(res, new TypeReference<>() {
+                }));
+            }
+        } catch (URISyntaxException | InterruptedException | IOException e) {
+            e.printStackTrace();
+        }
+
+        return simpleFoodItems.stream()
+                .map(i -> Integer.valueOf(i.getFdcId()))
                 .collect(Collectors.toList());
     }
 }

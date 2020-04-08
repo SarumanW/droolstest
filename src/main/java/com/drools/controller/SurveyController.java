@@ -1,11 +1,11 @@
 package com.drools.controller;
 
+import com.drools.model.entity.Diet;
+import com.drools.model.entity.Ingredient;
 import com.drools.model.survey.Question;
 import com.drools.model.survey.QuestionModel;
-import com.drools.model.entity.Diet;
-import com.drools.model.entity.Product;
 import com.drools.repository.DietRepository;
-import com.drools.repository.ProductRepository;
+import com.drools.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +22,7 @@ public class SurveyController {
     private DietRepository dietRepository;
 
     @Autowired
-    private ProductRepository productRepository;
+    private IngredientRepository ingredientRepository;
 
     @GetMapping("/getQuestions")
     public List<QuestionModel> getQuestions() {
@@ -33,9 +33,9 @@ public class SurveyController {
                         .collect(Collectors.toList()));
 
         QuestionModel forbiddenProducts = new QuestionModel(Question.FORBIDDEN_PRODUCTS_QUESTION.getText(),
-                productRepository.findAllByRareIsTrue()
+                ingredientRepository.findAllByRareIsTrue()
                         .stream()
-                        .map(Product::getName)
+                        .map(Ingredient::getName)
                         .collect(Collectors.toList()));
 
         return List.of(diets, forbiddenProducts);

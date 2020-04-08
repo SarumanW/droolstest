@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class FoodNutrient {
+public class SimpleFoodItem {
 
-    private FoodNutrientFact nutrient;
-
-    private double amount;
+    private String fdcId;
 }

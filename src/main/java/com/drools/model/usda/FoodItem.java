@@ -14,6 +14,12 @@ import java.util.List;
 public class FoodItem {
 
     private String fdcId;
+
     private String description;
+
+    private String foodCode;
+
     private List<FoodNutrient> foodNutrients;
+
+    private List<FoodIngredient> inputFoods;
 }
