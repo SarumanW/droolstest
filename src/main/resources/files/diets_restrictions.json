@@ -1,0 +1,37 @@
+[
+    {
+        "restrictedCategoriesIds": [
+            21,
+            22,
+            242,
+            12,
+            13,
+            112,
+            271,
+            272,
+            273,
+            275,
+            71,
+            91,
+            92,
+            93,
+            252,
+            62,
+            64,
+            67
+        ],
+        "dietId": 1,
+        "restrictedItems": [
+            "mayonnaise",
+            "banana",
+            "smoke",
+            "mango",
+            "pineapple",
+            "sausage",
+            "sunflower oil",
+            "margarine",
+            "soda",
+            "chips"
+        ]
+    }
+]

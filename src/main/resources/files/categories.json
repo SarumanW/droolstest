@@ -1,0 +1,1869 @@
+[
+    {
+        "categoryName": "Milks and milk products",
+        "categoryNumber": 1,
+        "subCategories": [
+            {
+                "categoryName": "Milks and milk drinks",
+                "categoryNumber": 11,
+                "subCategories": [
+                    {
+                        "categoryName": "Milk, human",
+                        "categoryNumber": 110,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Milk, fluid (regular; filled; buttermilk; and dry reconstituted)",
+                        "categoryNumber": 111,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Milk, fluid, evaporated and condensed",
+                        "categoryNumber": 112,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Milk, fluid, imitation",
+                        "categoryNumber": 113,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Yogurt",
+                        "categoryNumber": 114,
+                        "subCategories": [
+                            {
+                                "categoryName": "Yogurt, baby food",
+                                "categoryNumber": 1148,
+                                "subCategories": []
+                            }
+                        ]
+                    },
+                    {
+                        "categoryName": "Flavored milk and milk drinks, fluid",
+                        "categoryNumber": 115,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Infant formulas, fluid, reconstituted concentrate, reconstituted dry, and ready-to-feed",
+                        "categoryNumber": 117,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Milk, dry, and powdered mixtures with dry milk, not reconstituted",
+                        "categoryNumber": 118,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Creams and cream substitutes",
+                "categoryNumber": 12,
+                "subCategories": [
+                    {
+                        "categoryName": "Sweet dairy cream",
+                        "categoryNumber": 121,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Cream substitutes",
+                        "categoryNumber": 122,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Sour cream",
+                        "categoryNumber": 123,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Milk desserts, sauces, gravies",
+                "categoryNumber": 13,
+                "subCategories": [
+                    {
+                        "categoryName": "Milk desserts, frozen",
+                        "categoryNumber": 131,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Puddings, custards, and other milk desserts",
+                        "categoryNumber": 132,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Milk desserts baby food",
+                        "categoryNumber": 133,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "White sauces and milk gravies",
+                        "categoryNumber": 134,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Cheeses",
+                "categoryNumber": 14,
+                "subCategories": [
+                    {
+                        "categoryName": "Cheese, non-specified",
+                        "categoryNumber": 140,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Natural cheeses",
+                        "categoryNumber": 141,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Cottage cheeses",
+                        "categoryNumber": 142,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Cream cheeses",
+                        "categoryNumber": 143,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Processed cheeses and cheese spreads",
+                        "categoryNumber": 144,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Imitation cheeses",
+                        "categoryNumber": 145,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Cheese mixtures",
+                        "categoryNumber": 146,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Cheese soups",
+                        "categoryNumber": 147,
+                        "subCategories": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "categoryName": "Meat, Poultry, Fish, and Mixtures",
+        "categoryNumber": 2,
+        "subCategories": [
+            {
+                "categoryName": "Meat, non-specified",
+                "categoryNumber": 20,
+                "subCategories": [
+                    {
+                        "categoryName": "Meat, non-specified",
+                        "categoryNumber": 200,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Beef",
+                "categoryNumber": 21,
+                "subCategories": [
+                    {
+                        "categoryName": "Beef, non-specified",
+                        "categoryNumber": 210,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Beef steak",
+                        "categoryNumber": 211,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Beef oxtails, neckbones, short ribs, head",
+                        "categoryNumber": 213,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Beef roasts, stew meat, corned beef, beef brisket, sandwich steaks",
+                        "categoryNumber": 214,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Ground beef, beef patties, beef meatballs",
+                        "categoryNumber": 215,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Other beef items (beef bacon; dried beef; pastrami)",
+                        "categoryNumber": 216,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Beef baby food",
+                        "categoryNumber": 217,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Pork",
+                "categoryNumber": 22,
+                "subCategories": [
+                    {
+                        "categoryName": "Pork, non-specified",
+                        "categoryNumber": 220,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Pork chops",
+                        "categoryNumber": 221,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Pork steaks, cutlets",
+                        "categoryNumber": 222,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Ham",
+                        "categoryNumber": 223,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Pork roasts",
+                        "categoryNumber": 224,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Canadian bacon",
+                        "categoryNumber": 225,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Bacon, salt pork",
+                        "categoryNumber": 226,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Other pork items (spareribs; cracklings; skin; miscellaneous parts)",
+                        "categoryNumber": 227,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Pork baby food",
+                        "categoryNumber": 228,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Lamb, veal, game, other carcass meat",
+                "categoryNumber": 23,
+                "subCategories": [
+                    {
+                        "categoryName": "Lamb, non-specified",
+                        "categoryNumber": 230,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Lamb and goat",
+                        "categoryNumber": 231,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Veal",
+                        "categoryNumber": 232,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Game",
+                        "categoryNumber": 233,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Lamb or veal baby food",
+                        "categoryNumber": 234,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Poultry",
+                "categoryNumber": 24,
+                "subCategories": [
+                    {
+                        "categoryName": "Chicken (breast; leg; drumstick; wing; back; neck or ribs; misc.)",
+                        "categoryNumber": 241,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Turkey",
+                        "categoryNumber": 242,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Duck",
+                        "categoryNumber": 243,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Other poultry",
+                        "categoryNumber": 244,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Poultry baby food",
+                        "categoryNumber": 247,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Organ meats, sausages and lunchmeats, and meat spreads",
+                "categoryNumber": 25,
+                "subCategories": [
+                    {
+                        "categoryName": "Organ meats and mixtures",
+                        "categoryNumber": 251,
+                        "subCategories": [
+                            {
+                                "categoryName": "Liver",
+                                "categoryNumber": 2511,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Hearts",
+                                "categoryNumber": 2512,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Kidney",
+                                "categoryNumber": 2513,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Sweetbreads",
+                                "categoryNumber": 2514,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Brains",
+                                "categoryNumber": 2515,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Tongue",
+                                "categoryNumber": 2516,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Other variety meats",
+                                "categoryNumber": 2517,
+                                "subCategories": []
+                            }
+                        ]
+                    },
+                    {
+                        "categoryName": "Frankfurters, sausages, lunchmeats, meat spreads",
+                        "categoryNumber": 252,
+                        "subCategories": [
+                            {
+                                "categoryName": "Frankfurters",
+                                "categoryNumber": 2521,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Sausages",
+                                "categoryNumber": 2522,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Luncheon meats (loaf)",
+                                "categoryNumber": 2523,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Potted meat, spreads",
+                                "categoryNumber": 2524,
+                                "subCategories": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "categoryName": "Fish and shellfish",
+                "categoryNumber": 26,
+                "subCategories": [
+                    {
+                        "categoryName": "Finfish",
+                        "categoryNumber": 261,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Other seafood",
+                        "categoryNumber": 262,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Shellfish",
+                        "categoryNumber": 263,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Meat, poultry, fish with nonmeat items",
+                "categoryNumber": 27,
+                "subCategories": [
+                    {
+                        "categoryName": "Meat, poultry, fish in gravy or sauce or creamed",
+                        "categoryNumber": 271,
+                        "subCategories": [
+                            {
+                                "categoryName": "Beef in gravy or sauce",
+                                "categoryNumber": 2711,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Pork with gravy or sauce",
+                                "categoryNumber": 2712,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Lamb and veal with gravy or sauce",
+                                "categoryNumber": 2713,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Poultry with gravy or sauce",
+                                "categoryNumber": 2714,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Fish, shellfish with gravy or sauce",
+                                "categoryNumber": 2715,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Miscellaneous meats with gravy or sauce",
+                                "categoryNumber": 2716,
+                                "subCategories": []
+                            }
+                        ]
+                    },
+                    {
+                        "categoryName": "Meat, poultry, fish with starch item (includes white potatoes)",
+                        "categoryNumber": 272,
+                        "subCategories": [
+                            {
+                                "categoryName": "Beef with starch item",
+                                "categoryNumber": 2721,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Pork with starch item",
+                                "categoryNumber": 2722,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Lamb, veal, game with starch item",
+                                "categoryNumber": 2723,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Poultry with starch item",
+                                "categoryNumber": 2724,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Fish, shellfish with starch item",
+                                "categoryNumber": 2725,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Miscellaneous meats with starch item",
+                                "categoryNumber": 2726,
+                                "subCategories": []
+                            }
+                        ]
+                    },
+                    {
+                        "categoryName": "Meat, poultry, fish with starch item and vegetables",
+                        "categoryNumber": 273,
+                        "subCategories": [
+                            {
+                                "categoryName": "Beef with starch and vegetable",
+                                "categoryNumber": 2731,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Pork with starch and vegetable",
+                                "categoryNumber": 2732,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Lamb, veal, game with starch and vegetable",
+                                "categoryNumber": 2733,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Poultry with starch and vegetable",
+                                "categoryNumber": 2734,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Fish, shellfish with starch and vegetable",
+                                "categoryNumber": 2735,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Miscellaneous meats with starch and vegetable",
+                                "categoryNumber": 2736,
+                                "subCategories": []
+                            }
+                        ]
+                    },
+                    {
+                        "categoryName": "Meat, poultry, fish with vegetables (excluding white potatoes)",
+                        "categoryNumber": 274,
+                        "subCategories": [
+                            {
+                                "categoryName": "Beef with vegetable, no potatoes",
+                                "categoryNumber": 2741,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Pork with vegetable, no potatoes",
+                                "categoryNumber": 2742,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Lamb, veal, game with vegetable, no potatoes",
+                                "categoryNumber": 2743,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Poultry with vegetables, no potatoes",
+                                "categoryNumber": 2744,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Fish, shellfish with vegetables, no potatoes",
+                                "categoryNumber": 2745,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Miscellaneous meats with vegetable, no potatoes",
+                                "categoryNumber": 2746,
+                                "subCategories": []
+                            }
+                        ]
+                    },
+                    {
+                        "categoryName": "Sandwiches with meat, poultry, fish",
+                        "categoryNumber": 275,
+                        "subCategories": [
+                            {
+                                "categoryName": "Beef sandwiches",
+                                "categoryNumber": 2751,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Pork sandwiches",
+                                "categoryNumber": 2752,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Poultry sandwiches",
+                                "categoryNumber": 2754,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Fish, shellfish sandwiches",
+                                "categoryNumber": 2755,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Frankfurters, luncheon meat, potted meat sandwiches",
+                                "categoryNumber": 2756,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Hors d'oeuvres, finger sandwiches",
+                                "categoryNumber": 2757,
+                                "subCategories": []
+                            }
+                        ]
+                    },
+                    {
+                        "categoryName": "Meat, poultry, fish with nonmeat items baby food",
+                        "categoryNumber": 276,
+                        "subCategories": [
+                            {
+                                "categoryName": "Beef mixtures baby food",
+                                "categoryNumber": 2761,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Poultry mixtures baby food",
+                                "categoryNumber": 2764,
+                                "subCategories": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "categoryName": "Frozen and shelf-stable plate meals, soups, and gravies with meat, poultry, fish base; gelatin and gelatin-based drinks",
+                "categoryNumber": 28,
+                "subCategories": [
+                    {
+                        "categoryName": "Frozen or shelf-stable plate meals with meat, poultry, fish as major ingredient",
+                        "categoryNumber": 281,
+                        "subCategories": [
+                            {
+                                "categoryName": "Beef frozen or shelf-stable meals",
+                                "categoryNumber": 2811,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Veal frozen or shelf-stable meals",
+                                "categoryNumber": 2813,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Poultry frozen or shelf-stable meals",
+                                "categoryNumber": 2814,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Fish, shellfish frozen meals",
+                                "categoryNumber": 2815,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Miscellaneous meat frozen or shelf-stable meals",
+                                "categoryNumber": 2816,
+                                "subCategories": []
+                            }
+                        ]
+                    },
+                    {
+                        "categoryName": "Soups, broths, extracts from meat, poultry, fish base",
+                        "categoryNumber": 283,
+                        "subCategories": [
+                            {
+                                "categoryName": "Beef soups",
+                                "categoryNumber": 2831,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Pork soups",
+                                "categoryNumber": 2832,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Lamb soups",
+                                "categoryNumber": 2833,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Poultry, soups",
+                                "categoryNumber": 2834,
+                                "subCategories": [
+                                    {
+                                        "categoryName": "Poultry cream soups",
+                                        "categoryNumber": 28345,
+                                        "subCategories": []
+                                    }
+                                ]
+                            },
+                            {
+                                "categoryName": "Fish, shellfish soups",
+                                "categoryNumber": 2835,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Puerto Rican soups",
+                                "categoryNumber": 2836,
+                                "subCategories": []
+                            }
+                        ]
+                    },
+                    {
+                        "categoryName": "Gelatin and gelatin-based meal supplements",
+                        "categoryNumber": 284,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Gravies from meat, poultry, fish base",
+                        "categoryNumber": 285,
+                        "subCategories": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "categoryName": "Eggs",
+        "categoryNumber": 3,
+        "subCategories": [
+            {
+                "categoryName": "Eggs",
+                "categoryNumber": 31,
+                "subCategories": [
+                    {
+                        "categoryName": "Chicken eggs",
+                        "categoryNumber": 311,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Other poultry eggs",
+                        "categoryNumber": 312,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Egg mixtures",
+                "categoryNumber": 32,
+                "subCategories": [
+                    {
+                        "categoryName": "Egg dishes",
+                        "categoryNumber": 321,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Egg sandwiches",
+                        "categoryNumber": 322,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Egg soups",
+                        "categoryNumber": 323,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Mixtures made with egg whites",
+                        "categoryNumber": 324,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Egg substitutes",
+                "categoryNumber": 33,
+                "subCategories": [
+                    {
+                        "categoryName": "Egg substitutes, non-specified",
+                        "categoryNumber": 330,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Mixtures made with egg substitutes",
+                        "categoryNumber": 334,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Frozen plate meals with egg as major ingredient",
+                "categoryNumber": 35,
+                "subCategories": [
+                    {
+                        "categoryName": "Frozen plate meals with egg as major ingredient",
+                        "categoryNumber": 350,
+                        "subCategories": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "categoryName": "Dry Beans, Peas, Other Legumes, Nuts, and Seeds",
+        "categoryNumber": 4,
+        "subCategories": [
+            {
+                "categoryName": "Legumes",
+                "categoryNumber": 41,
+                "subCategories": [
+                    {
+                        "categoryName": "Dried beans",
+                        "categoryNumber": 411,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Dried beans mixtures",
+                        "categoryNumber": 412,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Dried peas, lentils, and mixtures",
+                        "categoryNumber": 413,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Soybean derived products (excluding milks)",
+                        "categoryNumber": 414,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Soups with legumes as major ingredient",
+                        "categoryNumber": 416,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Meat substitutes, mainly legume protein",
+                        "categoryNumber": 418,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Meat substitute sandwiches",
+                        "categoryNumber": 419,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Nuts, nut butters, and nut mixtures",
+                "categoryNumber": 42,
+                "subCategories": [
+                    {
+                        "categoryName": "Nuts",
+                        "categoryNumber": 421,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Nut butters",
+                        "categoryNumber": 422,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Nut butter sandwiches",
+                        "categoryNumber": 423,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Coconut beverages",
+                        "categoryNumber": 424,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Nut mixtures",
+                        "categoryNumber": 425,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Seeds and seed mixtures",
+                "categoryNumber": 43,
+                "subCategories": [
+                    {
+                        "categoryName": "Seeds",
+                        "categoryNumber": 431,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Carob products",
+                "categoryNumber": 44,
+                "subCategories": [
+                    {
+                        "categoryName": "Carob powder, flour",
+                        "categoryNumber": 441,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Carob chips, syrup",
+                        "categoryNumber": 442,
+                        "subCategories": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "categoryName": "Grain Products",
+        "categoryNumber": 5,
+        "subCategories": [
+            {
+                "categoryName": "Flour and dry mixes",
+                "categoryNumber": 50,
+                "subCategories": [
+                    {
+                        "categoryName": "Flour and dry mixes",
+                        "categoryNumber": 500,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Yeast breads, rolls",
+                "categoryNumber": 51,
+                "subCategories": [
+                    {
+                        "categoryName": "Breads, rolls",
+                        "categoryNumber": 510,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "White breads, rolls",
+                        "categoryNumber": 511,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Whole wheat breads, rolls",
+                        "categoryNumber": 512,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Wheat, cracked wheat breads, rolls",
+                        "categoryNumber": 513,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Rye breads, rolls",
+                        "categoryNumber": 514,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Oat breads",
+                        "categoryNumber": 515,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Multigrain breads, rolls",
+                        "categoryNumber": 516,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Other breads",
+                        "categoryNumber": 518,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Quick breads",
+                "categoryNumber": 52,
+                "subCategories": [
+                    {
+                        "categoryName": "Biscuits",
+                        "categoryNumber": 521,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Cornbread, corn muffins, tortillas",
+                        "categoryNumber": 522,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Other muffins, popovers",
+                        "categoryNumber": 523,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Other quick breads",
+                        "categoryNumber": 524,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Cakes, cookies, pies, pastries, bars",
+                "categoryNumber": 53,
+                "subCategories": [
+                    {
+                        "categoryName": "Cakes",
+                        "categoryNumber": 531,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Cookies",
+                        "categoryNumber": 532,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Pies",
+                        "categoryNumber": 533,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Cobblers, eclairs, turnovers, other pastries",
+                        "categoryNumber": 534,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Danish, breakfast pastries, doughnuts",
+                        "categoryNumber": 535,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Coffee cake, not yeast",
+                        "categoryNumber": 536,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Bars",
+                        "categoryNumber": 537,
+                        "subCategories": [
+                            {
+                                "categoryName": "Cereal bars, granola bars",
+                                "categoryNumber": 5371,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Nutrition bars",
+                                "categoryNumber": 5372,
+                                "subCategories": []
+                            }
+                        ]
+                    },
+                    {
+                        "categoryName": "Cookies and bars, baby food",
+                        "categoryNumber": 538,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Crackers and salty snacks from grain products",
+                "categoryNumber": 54,
+                "subCategories": [
+                    {
+                        "categoryName": "Crackers, non-specified",
+                        "categoryNumber": 540,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Sweet crackers",
+                        "categoryNumber": 541,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Low sodium crackers",
+                        "categoryNumber": 542,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Nonsweet crackers",
+                        "categoryNumber": 543,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Salty snacks from grain products",
+                        "categoryNumber": 544,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Pancakes, waffles, French toast, other grain products",
+                "categoryNumber": 55,
+                "subCategories": [
+                    {
+                        "categoryName": "Pancakes",
+                        "categoryNumber": 551,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Waffles",
+                        "categoryNumber": 552,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "French toast",
+                        "categoryNumber": 553,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Crepes",
+                        "categoryNumber": 554,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Flour-water patties",
+                        "categoryNumber": 555,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Flour-milk dumplings, plain",
+                        "categoryNumber": 556,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Rice flour cakes",
+                        "categoryNumber": 557,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Funnel cakes",
+                        "categoryNumber": 558,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Pastas, cooked cereals, rice",
+                "categoryNumber": 56,
+                "subCategories": [
+                    {
+                        "categoryName": "Pastas",
+                        "categoryNumber": 561,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Cooked cereals, rice",
+                        "categoryNumber": 562,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Cereals, not cooked or NS as to cooked",
+                "categoryNumber": 57,
+                "subCategories": [
+                    {
+                        "categoryName": "Cereals, non-specified",
+                        "categoryNumber": 570,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Ready-to-eat cereals",
+                        "categoryNumber": 571,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Ready-to-eat cereals",
+                        "categoryNumber": 572,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Ready-to-eat cereals",
+                        "categoryNumber": 573,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Ready-to-eat cereals",
+                        "categoryNumber": 574,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Cereal grains, not cooked",
+                        "categoryNumber": 576,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Cereals baby food",
+                        "categoryNumber": 578,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Grain mixtures, frozen plate meals, soups",
+                "categoryNumber": 58,
+                "subCategories": [
+                    {
+                        "categoryName": "Mixtures, mainly grain, pasta, or bread",
+                        "categoryNumber": 581,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Mixtures, mainly grain, pasta, or bread",
+                        "categoryNumber": 582,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Frozen plate meals with grain mixture as major ingredient",
+                        "categoryNumber": 583,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Soups with grain product as major ingredient",
+                        "categoryNumber": 584,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Grain mixtures baby food",
+                        "categoryNumber": 585,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Meat substitutes, mainly cereal protein",
+                "categoryNumber": 59,
+                "subCategories": [
+                    {
+                        "categoryName": "Meat substitutes, mainly cereal protein",
+                        "categoryNumber": 590,
+                        "subCategories": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "categoryName": "Fruits",
+        "categoryNumber": 6,
+        "subCategories": [
+            {
+                "categoryName": "Citrus fruits, juices",
+                "categoryNumber": 61,
+                "subCategories": [
+                    {
+                        "categoryName": "Citrus fruits",
+                        "categoryNumber": 611,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Citrus fruit juices",
+                        "categoryNumber": 612,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Dried fruits",
+                "categoryNumber": 62,
+                "subCategories": [
+                    {
+                        "categoryName": "Dried fruits",
+                        "categoryNumber": 621,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Other fruits",
+                "categoryNumber": 63,
+                "subCategories": [
+                    {
+                        "categoryName": "Fruits, excluding berries",
+                        "categoryNumber": 631,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Berries",
+                        "categoryNumber": 632,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Mixtures of two or more fruits",
+                        "categoryNumber": 633,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Mixtures of fruits and nonfruit items",
+                        "categoryNumber": 634,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Fruit juices and nectars excluding citrus",
+                "categoryNumber": 64,
+                "subCategories": [
+                    {
+                        "categoryName": "Fruit juices, excluding citrus",
+                        "categoryNumber": 641,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Nectars",
+                        "categoryNumber": 642,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Vinegar",
+                        "categoryNumber": 644,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Fruits and juices baby food",
+                "categoryNumber": 67,
+                "subCategories": [
+                    {
+                        "categoryName": "Fruits and fruit mixtures baby food",
+                        "categoryNumber": 671,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Fruit juice and fruit juice mixtures baby food",
+                        "categoryNumber": 672,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Fruits with cereal baby food",
+                        "categoryNumber": 673,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Fruit desserts and fruit-flavored puddings and yogurt desserts baby food",
+                        "categoryNumber": 674,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Fruits with meat or poultry baby food",
+                        "categoryNumber": 675,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Fruits and vegetables mixtures baby food",
+                        "categoryNumber": 676,
+                        "subCategories": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "categoryName": "Vegetables",
+        "categoryNumber": 7,
+        "subCategories": [
+            {
+                "categoryName": "White potatoes and Puerto Rican starchy vegetables",
+                "categoryNumber": 71,
+                "subCategories": [
+                    {
+                        "categoryName": "White potatoes, non-specified",
+                        "categoryNumber": 710,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "White potatoes, baked and boiled",
+                        "categoryNumber": 711,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "White potatoes, chips and sticks",
+                        "categoryNumber": 712,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "White potatoes, creamed, scalloped, au gratin",
+                        "categoryNumber": 713,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "White potatoes, fried",
+                        "categoryNumber": 714,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "White potatoes, mashed, stuffed, puffs",
+                        "categoryNumber": 715,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Potato salad",
+                        "categoryNumber": 716,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Potato recipes",
+                        "categoryNumber": 717,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Potato soups",
+                        "categoryNumber": 718,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Puerto Rican starchy vegetables",
+                        "categoryNumber": 719,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Dark-green vegetables",
+                "categoryNumber": 72,
+                "subCategories": [
+                    {
+                        "categoryName": "Dark-green leafy vegetables",
+                        "categoryNumber": 721,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Dark-green nonleafy vegetables",
+                        "categoryNumber": 722,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Dark-green vegetable soups",
+                        "categoryNumber": 723,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Deep-yellow vegetables",
+                "categoryNumber": 73,
+                "subCategories": [
+                    {
+                        "categoryName": "Carrots",
+                        "categoryNumber": 731,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Pumpkin",
+                        "categoryNumber": 732,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Squash, winter",
+                        "categoryNumber": 733,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Sweet potatoes",
+                        "categoryNumber": 734,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Deep-yellow vegetable soups",
+                        "categoryNumber": 735,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Tomatoes and tomato mixtures",
+                "categoryNumber": 74,
+                "subCategories": [
+                    {
+                        "categoryName": "Tomatoes, raw",
+                        "categoryNumber": 741,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Tomatoes, cooked",
+                        "categoryNumber": 742,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Tomato juices",
+                        "categoryNumber": 743,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Tomato sauces",
+                        "categoryNumber": 744,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Tomato mixtures",
+                        "categoryNumber": 745,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Tomato soups",
+                        "categoryNumber": 746,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Tomato sandwiches",
+                        "categoryNumber": 747,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Other vegetables",
+                "categoryNumber": 75,
+                "subCategories": [
+                    {
+                        "categoryName": "Other vegetables, raw",
+                        "categoryNumber": 751,
+                        "subCategories": [
+                            {
+                                "categoryName": "Raw vegetable mixtures",
+                                "categoryNumber": 7514,
+                                "subCategories": []
+                            }
+                        ]
+                    },
+                    {
+                        "categoryName": "Other vegetables, cooked",
+                        "categoryNumber": 752,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Other vegetable mixtures, cooked",
+                        "categoryNumber": 753,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Other cooked vegetables, cooked with sauces, batters, casseroles",
+                        "categoryNumber": 754,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Olives, pickles, relishes (excluding tomatoes)",
+                        "categoryNumber": 755,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Vegetable soups",
+                        "categoryNumber": 756,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Vegetables and mixtures mostly vegetables baby food",
+                "categoryNumber": 76,
+                "subCategories": [
+                    {
+                        "categoryName": "Dark-green vegetables baby food",
+                        "categoryNumber": 761,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Deep-yellow vegetables baby food",
+                        "categoryNumber": 762,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Vegetables other than dark-green, deep-yellow, and tomato baby food",
+                        "categoryNumber": 764,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Vegetables with grain baby food",
+                        "categoryNumber": 765,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Vegetables with meat baby food",
+                        "categoryNumber": 766,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Vegetables with meat, poultry, fish",
+                "categoryNumber": 77,
+                "subCategories": [
+                    {
+                        "categoryName": "White potato with meat, poultry, fish (mixtures)",
+                        "categoryNumber": 771,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Puerto Rican starchy vegetable (viandas) mixtures",
+                        "categoryNumber": 772,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Other vegetable mixtures",
+                        "categoryNumber": 773,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Puerto Rican stews or soups with starchy vegetables (viandas)",
+                        "categoryNumber": 775,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Mixtures mostly vegetables without meat, poultry, fish",
+                "categoryNumber": 78,
+                "subCategories": [
+                    {
+                        "categoryName": "Vegetable and fruit juice blends, 100% juice",
+                        "categoryNumber": 781,
+                        "subCategories": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "categoryName": "Fats, Oils, and Salad Dressings",
+        "categoryNumber": 8,
+        "subCategories": [
+            {
+                "categoryName": "Fats",
+                "categoryNumber": 81,
+                "subCategories": [
+                    {
+                        "categoryName": "Table fats",
+                        "categoryNumber": 811,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Cooking fats",
+                        "categoryNumber": 812,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Other fats",
+                        "categoryNumber": 813,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Oils",
+                "categoryNumber": 82,
+                "subCategories": [
+                    {
+                        "categoryName": "Vegetable oils",
+                        "categoryNumber": 821,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Salad dressings",
+                "categoryNumber": 83,
+                "subCategories": [
+                    {
+                        "categoryName": "Regular salad dressings",
+                        "categoryNumber": 831,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Light salad dressings",
+                        "categoryNumber": 832,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Fat free salad dressings",
+                        "categoryNumber": 833,
+                        "subCategories": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "categoryName": "Sugars, Sweets, and Beverages",
+        "categoryNumber": 9,
+        "subCategories": [
+            {
+                "categoryName": "Sugars and sweets",
+                "categoryNumber": 91,
+                "subCategories": [
+                    {
+                        "categoryName": "Sugars and sugar-sugar substitute blends",
+                        "categoryNumber": 911,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Sugar replacements or substitute",
+                        "categoryNumber": 912,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Syrups, honey, molasses, sweet toppings",
+                        "categoryNumber": 913,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Jellies, jams, preserves",
+                        "categoryNumber": 914,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Gelatin desserts or salads",
+                        "categoryNumber": 915,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Ices or popsicles",
+                        "categoryNumber": 916,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Candies",
+                        "categoryNumber": 917,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Chewing gums",
+                        "categoryNumber": 918,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Nonalcoholic beverages",
+                "categoryNumber": 92,
+                "subCategories": [
+                    {
+                        "categoryName": "Coffee",
+                        "categoryNumber": 921,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Coffee substitutes",
+                        "categoryNumber": 922,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Tea",
+                        "categoryNumber": 923,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Soft drinks, carbonated",
+                        "categoryNumber": 924,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Fruit drinks",
+                        "categoryNumber": 925,
+                        "subCategories": [
+                            {
+                                "categoryName": "Fruit juice drinks and fruit-flavored drinks",
+                                "categoryNumber": 9251,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Fruit juice drinks and fruit flavored drinks with high vitamin C",
+                                "categoryNumber": 9253,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Fruit flavored drinks, made from powdered mix",
+                                "categoryNumber": 9254,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Fruit juice drinks and fruit flavored drinks, low calorie",
+                                "categoryNumber": 9255,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Fruit juice drinks and fruit flavored drinks, fortified with calcium",
+                                "categoryNumber": 9258,
+                                "subCategories": []
+                            }
+                        ]
+                    },
+                    {
+                        "categoryName": "Beverages, nonfruit",
+                        "categoryNumber": 926,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Nonalcoholic beers, wines, cocktails",
+                        "categoryNumber": 928,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Beverage concentrates, dry, not reconstituted",
+                        "categoryNumber": 929,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Alcoholic beverages",
+                "categoryNumber": 93,
+                "subCategories": [
+                    {
+                        "categoryName": "Beers and ales",
+                        "categoryNumber": 931,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Cordials and liqueurs",
+                        "categoryNumber": 932,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Cocktails",
+                        "categoryNumber": 933,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Wines",
+                        "categoryNumber": 934,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Distilled liquors",
+                        "categoryNumber": 935,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Water, noncarbonated",
+                "categoryNumber": 94,
+                "subCategories": [
+                    {
+                        "categoryName": "Water, not bottled",
+                        "categoryNumber": 940,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Water, bottled",
+                        "categoryNumber": 941,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Water, bottled, fortified",
+                        "categoryNumber": 942,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Water, baby food",
+                        "categoryNumber": 943,
+                        "subCategories": []
+                    }
+                ]
+            },
+            {
+                "categoryName": "Formulated nutrition beverages, energy drinks, sports drinks, functional beverages",
+                "categoryNumber": 95,
+                "subCategories": [
+                    {
+                        "categoryName": "Nutrition drinks",
+                        "categoryNumber": 951,
+                        "subCategories": []
+                    },
+                    {
+                        "categoryName": "Nutrition powders",
+                        "categoryNumber": 952,
+                        "subCategories": [
+                            {
+                                "categoryName": "Energy drinks",
+                                "categoryNumber": 9521,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Sports drinks",
+                                "categoryNumber": 9522,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Fluid replacements",
+                                "categoryNumber": 9523,
+                                "subCategories": []
+                            },
+                            {
+                                "categoryName": "Other functional beverages",
+                                "categoryNumber": 9524,
+                                "subCategories": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

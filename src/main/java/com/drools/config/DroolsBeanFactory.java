@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Configuration
@@ -53,7 +54,7 @@ public class DroolsBeanFactory {
 
         KieSession kieSession = getKieContainer().newKieSession(ksconf);
 
-        Map<Long, Product> userProductsMap = new HashMap<>();
+        Map<Long, List<Product>> userProductsMap = new HashMap<>();
         kieSession.setGlobal("userProductsMap", userProductsMap);
 
         return kieSession;

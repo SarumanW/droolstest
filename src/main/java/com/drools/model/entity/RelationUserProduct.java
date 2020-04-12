@@ -19,7 +19,7 @@ public class RelationUserProduct {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product product;
+    private Ingredient product;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

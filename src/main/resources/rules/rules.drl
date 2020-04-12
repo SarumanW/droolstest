@@ -7,7 +7,9 @@ import com.drools.model.entity.Diet.DietType;
 
 import java.util.List;
 import org.apache.commons.collections4.CollectionUtils
-import java.util.stream.Collectors;
+import java.util.stream.Collectors
+import java.util.ArrayList
+import java.util.Map;
 
 global java.util.Map userProductsMap;
 
@@ -19,7 +21,7 @@ function int compareTwoLists (List composition, List forbiddenProductsRelations)
     return CollectionUtils.intersection(composition, forbiddenProducts).size();
 }
 
-function boolean dietAvailable(List list, String property) {
+function boolean dietAvailable (List list, String property) {
     return ((List<Object>)list.stream()
     .filter(o -> ((Diet)o).getName().equals(property))
     .collect(Collectors.toList())).size() > 0;
@@ -31,7 +33,7 @@ when
 product : Product (composition.size() != 0)
 user: User (forbiddenProducts.size() != 0, compareTwoLists(product.composition, user.forbiddenProducts) > 0)
 then
-userProductsMap.put(user.getId(), product);
+((List<Product>) userProductsMap.computeIfAbsent(user.getId(), k -> new ArrayList<>())).add(product);
 end;
 
 rule "Fat loss"
@@ -40,5 +42,5 @@ when
 product : Product()
 user: User (dietAvailable(followedDiets, DietType.FAT_LOSS.getDietName()))
 then
-userProductsMap.put(user.getId(), product);
+((List<Product>) userProductsMap.computeIfAbsent(user.getId(), k -> new ArrayList<>())).add(product);
 end;

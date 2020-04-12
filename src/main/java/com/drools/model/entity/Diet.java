@@ -1,10 +1,14 @@
 package com.drools.model.entity;
 
+import com.drools.utils.RestrictionImport;
+import com.google.gson.Gson;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,45 +21,53 @@ import java.util.stream.Collectors;
 public class Diet {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "diet_seq")
     private Long id;
 
     private String name;
 
-    private Diet(String name) {
-        this.name = name;
-    }
-
     //TODO: Add diet explanation
-
 
     public enum DietType {
 
-        FAT_LOSS("Втрачаю вагу"),
-        PALEO("Палео дієта"),
-        MEDITERRANEAN("Середземнороська дієта"),
-        KETO("Кето дієта"),
-        DIABETES("Діабетик"),
-        VEGAN("Веган"),
-        VEGETERIAN("Вегетаріанець"),
-        PESKATARIAN("Пескатаріанець"),
-        GLUTEN_FREE("Їжа без вмісту глютену"),
-        DAIRY_FREE("Уникаю молочних продуктів"),
-        LOW_SODIUM("Їжа з низьким вмістом солі");
+        FAT_LOSS(1, "Втрачаю вагу"),
+        PALEO(2, "Палео дієта"),
+        MEDITERRANEAN(3, "Середземнороська дієта"),
+        KETO(4, "Кето дієта"),
+        DIABETES(5, "Діабетик"),
+        VEGAN(6, "Веган"),
+        VEGETERIAN(7, "Вегетаріанець"),
+        PESKATARIAN(8, "Пескатаріанець"),
+        GLUTEN_FREE(9, "Їжа без вмісту глютену"),
+        DAIRY_FREE(10, "Уникаю молочних продуктів"),
+        LOW_SODIUM(11, "Їжа з низьким вмістом солі");
+
+        private Gson gson = new Gson();
+
+        private int id;
 
         private String dietName;
 
-        DietType(String dietName) {
+        private DietRestrictionModel dietRestrictionModel;
+
+        DietType(int id, String dietName) {
+            this.id = id;
             this.dietName = dietName;
+
+            //get details from file by diet id
+            this.dietRestrictionModel = RestrictionImport.getRestrictionsByDietId(id);
         }
 
         public String getDietName() {
             return dietName;
         }
 
+        public int getId() {
+            return id;
+        }
+
         public static List<Diet> getDiets() {
             return Arrays.stream(DietType.values())
-                    .map(dietName -> new Diet(dietName.getDietName()))
+                    .map(diet -> new Diet((long) diet.getId(), diet.getDietName()))
                     .collect(Collectors.toList());
         }
     }

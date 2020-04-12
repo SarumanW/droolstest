@@ -80,7 +80,7 @@ public class UsdaController {
 
         return detailedFoodItemsInfo;
     }
-    
+
     private List<FoodItem> getDetailedFoodItemsInfo(List<Integer> foodItemsIds) {
         List<FoodItem> foodItems = new ArrayList<>();
 
