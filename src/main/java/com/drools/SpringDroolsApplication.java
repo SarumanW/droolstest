@@ -2,8 +2,10 @@ package com.drools;
 
 import com.drools.model.entity.Diet;
 import com.drools.model.entity.NutritionFact;
+import com.drools.repository.CategoryRepository;
 import com.drools.repository.DietRepository;
 import com.drools.repository.NutritionFactRepository;
+import com.drools.utils.CategoriesImport;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -20,6 +22,9 @@ public class SpringDroolsApplication {
     @Autowired
     private NutritionFactRepository nutritionFactRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(SpringDroolsApplication.class, args);
     }
@@ -29,6 +34,7 @@ public class SpringDroolsApplication {
         return () -> {
             dietRepository.saveAll(Diet.DietType.getDiets());
             nutritionFactRepository.saveAll(NutritionFact.NutritionFacts.getNutritionFacts());
+            categoryRepository.saveAll(CategoriesImport.retrieveCategoriesList());
         };
     }
 

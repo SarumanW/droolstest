@@ -10,10 +10,9 @@ import org.apache.commons.collections4.CollectionUtils
 import java.util.stream.Collectors
 import java.util.ArrayList
 import java.util.Map;
+import java.util.HashMap;
 
-global java.util.Map userProductsMap;
-
-function int compareTwoLists (List composition, List forbiddenProductsRelations) {
+function int compareTwoLists(List composition, List forbiddenProductsRelations) {
     List<Product> forbiddenProducts = (List<Product>) forbiddenProductsRelations.stream()
         .map(r -> ((RelationUserProduct)r).getProduct())
         .collect(Collectors.toList());
@@ -21,26 +20,30 @@ function int compareTwoLists (List composition, List forbiddenProductsRelations)
     return CollectionUtils.intersection(composition, forbiddenProducts).size();
 }
 
-function boolean dietAvailable (List list, String property) {
+function boolean dietAvailable(List list, String property) {
     return ((List<Object>)list.stream()
     .filter(o -> ((Diet)o).getName().equals(property))
     .collect(Collectors.toList())).size() > 0;
 }
 
+function void addProductToUserList(User user, Product product) {
+    user.addProductToList(product);
+}
+
 rule "Forbidden products"
 timer ( cron:* 0/15 * * * ? )
 when
-product : Product (composition.size() != 0)
-user: User (forbiddenProducts.size() != 0, compareTwoLists(product.composition, user.forbiddenProducts) > 0)
+    product : Product (composition.size() != 0)
+    user: User (forbiddenIngredients.size() != 0, compareTwoLists(product.composition, user.forbiddenIngredients) > 0)
 then
-((List<Product>) userProductsMap.computeIfAbsent(user.getId(), k -> new ArrayList<>())).add(product);
+    addProductToUserList(user, product);
 end;
 
 rule "Fat loss"
 timer ( cron:* 0/15 * * * ? )
 when
-product : Product()
-user: User (dietAvailable(followedDiets, DietType.FAT_LOSS.getDietName()))
+    product : Product()
+    user: User (dietAvailable(followedDiets, DietType.FAT_LOSS.getDietName()))
 then
-((List<Product>) userProductsMap.computeIfAbsent(user.getId(), k -> new ArrayList<>())).add(product);
+    addProductToUserList(user, product);
 end;

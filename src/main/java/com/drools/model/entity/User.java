@@ -9,8 +9,8 @@ import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -46,5 +46,13 @@ public class User {
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "user")
     @Where(clause = "forbidden = true")
-    private List<RelationUserProduct> forbiddenProducts;
+    private List<RelationUserIngredient> forbiddenIngredients;
+
+    public void addProductToList(Product product) {
+        if (userProducts == null) {
+            userProducts = new ArrayList<>();
+        }
+
+        userProducts.add(new RelationUserProduct(this, product));
+    }
 }

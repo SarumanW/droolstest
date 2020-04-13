@@ -19,7 +19,7 @@ public class RelationUserProduct {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Ingredient product;
+    private Product product;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -27,5 +27,9 @@ public class RelationUserProduct {
 
     private boolean shown;
 
-    private boolean forbidden;
+    public RelationUserProduct(User user, Product product) {
+        this.user = user;
+        this.product = product;
+        this.shown = true;
+    }
 }

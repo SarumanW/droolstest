@@ -48,6 +48,21 @@ public class UsdaController {
 
         List<FoodItem> detailedFoodItemsInfo = this.getDetailedFoodItemsInfo(surveyFoods);
 
+        List<RelationProductNutrition> productNutritions = this.fillProductNutritionsList(detailedFoodItemsInfo);
+
+        List<Ingredient> distinctIngredients = productNutritions.stream()
+                .map(RelationProductNutrition::getProduct)
+                .flatMap(product -> product.getComposition().stream())
+                .distinct()
+                .collect(Collectors.toList());
+        ingredientRepository.saveAll(distinctIngredients);
+
+        productNutritionRepository.saveAll(productNutritions);
+
+        return detailedFoodItemsInfo;
+    }
+
+    private List<RelationProductNutrition> fillProductNutritionsList(List<FoodItem> detailedFoodItemsInfo) {
         List<RelationProductNutrition> productNutritions = new ArrayList<>();
         for (FoodItem foodItem : detailedFoodItemsInfo) {
             Product product = new Product(foodItem.getFdcId(), foodItem.getFoodCode(), foodItem.getDescription());
@@ -69,16 +84,7 @@ public class UsdaController {
             }
         }
 
-        List<Ingredient> distinctIngredients = productNutritions.stream()
-                .map(RelationProductNutrition::getProduct)
-                .flatMap(product -> product.getComposition().stream())
-                .distinct()
-                .collect(Collectors.toList());
-        ingredientRepository.saveAll(distinctIngredients);
-
-        productNutritionRepository.saveAll(productNutritions);
-
-        return detailedFoodItemsInfo;
+        return productNutritions;
     }
 
     private List<FoodItem> getDetailedFoodItemsInfo(List<Integer> foodItemsIds) {

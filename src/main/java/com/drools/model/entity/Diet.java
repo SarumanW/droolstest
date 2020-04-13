@@ -1,7 +1,6 @@
 package com.drools.model.entity;
 
 import com.drools.utils.RestrictionImport;
-import com.google.gson.Gson;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,8 +40,6 @@ public class Diet {
         DAIRY_FREE(10, "Уникаю молочних продуктів"),
         LOW_SODIUM(11, "Їжа з низьким вмістом солі");
 
-        private Gson gson = new Gson();
-
         private int id;
 
         private String dietName;
@@ -63,6 +60,10 @@ public class Diet {
 
         public int getId() {
             return id;
+        }
+
+        public DietRestrictionModel getDietRestrictionModel() {
+            return dietRestrictionModel;
         }
 
         public static List<Diet> getDiets() {

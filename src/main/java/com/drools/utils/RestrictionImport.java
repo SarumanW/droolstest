@@ -22,7 +22,7 @@ public class RestrictionImport {
     public static DietRestrictionModel getRestrictionsByDietId(int id) {
         if (restrictions.isEmpty()) {
             try (InputStream resource = new ClassPathResource(
-                    "file/diets_restrictions.json").getInputStream();
+                    "files/diets_restrictions.json").getInputStream();
                  BufferedReader reader = new BufferedReader(
                          new InputStreamReader(resource))) {
                 String json = reader.lines()

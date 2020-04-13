@@ -54,9 +54,6 @@ public class DroolsBeanFactory {
 
         KieSession kieSession = getKieContainer().newKieSession(ksconf);
 
-        Map<Long, List<Product>> userProductsMap = new HashMap<>();
-        kieSession.setGlobal("userProductsMap", userProductsMap);
-
         return kieSession;
 
     }
