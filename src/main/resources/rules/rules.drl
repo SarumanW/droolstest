@@ -10,7 +10,8 @@ import org.apache.commons.collections4.CollectionUtils
 import java.util.stream.Collectors
 import java.util.ArrayList
 import java.util.Map;
-import java.util.HashMap;
+import java.util.HashMap
+import com.drools.model.entity.Ingredient;
 
 function int compareTwoLists(List composition, List forbiddenProductsRelations) {
     List<Product> forbiddenProducts = (List<Product>) forbiddenProductsRelations.stream()
@@ -26,12 +27,38 @@ function boolean dietAvailable(List list, String property) {
     .collect(Collectors.toList())).size() > 0;
 }
 
+function boolean checkProductCategory(Product product, DietType dietType) {
+    for (Long restrictedCategoryId : dietType.getDietRestrictionModel().getRestrictedCategoriesIds()) {
+        if (String.valueOf(product.getFoodCode()).startsWith(String.valueOf(restrictedCategoryId))) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function boolean checkProductRestrictedItems(Product product, DietType dietType) {
+    for (String restrictedItem : dietType.getDietRestrictionModel().getRestrictedItems()) {
+        if (product.getName().toLowerCase().contains(restrictedItem.toLowerCase())) {
+            return false;
+        }
+
+        for (Ingredient ingredient : product.getComposition()) {
+            if (ingredient.getName().toLowerCase().contains(restrictedItem.toLowerCase())) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 function void addProductToUserList(User user, Product product) {
     user.addProductToList(product);
 }
 
 rule "Forbidden products"
-timer ( cron:* 0/15 * * * ? )
+//timer ( cron:* 0/15 * * * ? )
 when
     product : Product (composition.size() != 0)
     user: User (forbiddenIngredients.size() != 0, compareTwoLists(product.composition, user.forbiddenIngredients) > 0)
@@ -40,10 +67,10 @@ then
 end;
 
 rule "Fat loss"
-timer ( cron:* 0/15 * * * ? )
+//timer ( cron:* 0/15 * * * ? )
 when
-    product : Product()
     user: User (dietAvailable(followedDiets, DietType.FAT_LOSS.getDietName()))
+    product : Product (checkProductCategory(product, DietType.FAT_LOSS) == true && checkProductRestrictedItems(product, DietType.FAT_LOSS))
 then
     addProductToUserList(user, product);
 end;
