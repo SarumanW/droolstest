@@ -1,6 +1,7 @@
 package com.drools.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.functionalmodel.Attribute;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Data
@@ -48,11 +50,13 @@ public class User {
     @Where(clause = "forbidden = true")
     private List<RelationUserIngredient> forbiddenIngredients;
 
-    public void addProductToList(Product product) {
+    public synchronized void addProductToList(Product product) {
         if (userProducts == null) {
             userProducts = new ArrayList<>();
         }
 
         userProducts.add(new RelationUserProduct(this, product));
     }
+
+    private Map<Attribute, Object> attributeObjectMap;
 }
