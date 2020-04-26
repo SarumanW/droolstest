@@ -6,6 +6,7 @@ import com.drools.repository.CategoryRepository;
 import com.drools.repository.DietRepository;
 import com.drools.repository.NutritionFactRepository;
 import com.drools.utils.CategoriesImport;
+import com.functionalmodel.RuleEngine;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -41,6 +42,11 @@ public class SpringDroolsApplication {
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public RuleEngine ruleEngine() {
+        return new RuleEngine();
     }
 }
 

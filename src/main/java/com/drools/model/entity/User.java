@@ -11,6 +11,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -55,8 +56,13 @@ public class User {
             userProducts = new ArrayList<>();
         }
 
-        userProducts.add(new RelationUserProduct(this, product));
+        RelationUserProduct relationUserProduct = new RelationUserProduct(this, product);
+
+        if (userProducts.indexOf(relationUserProduct) == -1) {
+            userProducts.add(relationUserProduct);
+        }
     }
 
-    private Map<Attribute, Object> attributeObjectMap;
+    @Transient
+    private Map<Attribute, Object> attributeObjectMap = new HashMap<>();
 }

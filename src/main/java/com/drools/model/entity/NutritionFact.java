@@ -1,9 +1,5 @@
 package com.drools.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Arrays;
@@ -11,9 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class NutritionFact {
 
     @Id
@@ -42,4 +35,27 @@ public class NutritionFact {
         }
     }
 
+    public NutritionFact() {
+    }
+
+    public NutritionFact(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

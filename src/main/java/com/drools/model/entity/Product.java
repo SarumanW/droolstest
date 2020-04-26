@@ -1,17 +1,10 @@
 package com.drools.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Product {
 
     @Id
@@ -29,7 +22,7 @@ public class Product {
     private List<Ingredient> composition = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<RelationProductNutrition> nutritionFacts;
+    private List<RelationProductNutrition> nutritionFacts = new ArrayList<>();
 
     public Product(String id, String foodCode, String name) {
         this.id = Long.valueOf(id);
@@ -37,4 +30,46 @@ public class Product {
         this.name = name;
     }
 
+    public Product() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getFoodCode() {
+        return foodCode;
+    }
+
+    public void setFoodCode(Long foodCode) {
+        this.foodCode = foodCode;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Ingredient> getComposition() {
+        return composition;
+    }
+
+    public void setComposition(List<Ingredient> composition) {
+        this.composition = composition;
+    }
+
+    public List<RelationProductNutrition> getNutritionFacts() {
+        return nutritionFacts;
+    }
+
+    public void setNutritionFacts(List<RelationProductNutrition> nutritionFacts) {
+        this.nutritionFacts = nutritionFacts;
+    }
 }

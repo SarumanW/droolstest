@@ -1,14 +1,7 @@
 package com.functionalmodel;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.function.Consumer;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Rule<T> {
     private int groupId;
     private int ruleId;
@@ -19,7 +12,23 @@ public class Rule<T> {
     private int nextRuleGroupId;
     private int nextRuleId;
 
-    private Consumer<T> fire = input -> predicate.andThen(assertion).andThen(new Rule().getFire()).accept(input);
+    private Consumer<T> fire = input -> predicate.andThen(assertion)
+            .andThen(fireNextRule())
+            .accept(input);
+
+    private Consumer<T> fireNextRule() {
+        if (nextRuleGroupId != 0 && nextRuleId != 0) {
+            return RuleEngine.rules.stream()
+                    .filter(r -> r.getGroupId() == nextRuleGroupId)
+                    .filter(r -> r.getRuleId() == nextRuleId)
+                    .findFirst()
+                    .orElse(new Rule())
+                    .getFire();
+        } else {
+            return t -> {
+            };
+        }
+    }
 
     public Rule(int groupId, int ruleId, Consumer<T> predicate, Consumer<T> assertion, int nextRuleGroupId, int nextRuleId) {
         this.groupId = groupId;
@@ -29,4 +38,21 @@ public class Rule<T> {
         this.nextRuleGroupId = nextRuleGroupId;
         this.nextRuleId = nextRuleId;
     }
+
+    public Rule() {
+    }
+
+    public int getGroupId() {
+        return groupId;
+    }
+
+    public int getRuleId() {
+        return ruleId;
+    }
+
+
+    public Consumer<T> getFire() {
+        return fire;
+    }
+
 }

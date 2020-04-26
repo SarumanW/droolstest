@@ -1,20 +1,20 @@
 package com.drools.controller;
 
-import com.drools.model.entity.Ingredient;
-import com.drools.model.entity.NutritionFact;
-import com.drools.model.entity.Product;
-import com.drools.model.entity.RelationProductNutrition;
+import com.drools.model.entity.*;
 import com.drools.model.usda.FoodIngredient;
 import com.drools.model.usda.FoodItem;
 import com.drools.model.usda.FoodsSearchCriteria;
 import com.drools.model.usda.SimpleFoodItem;
 import com.drools.repository.IngredientRepository;
 import com.drools.repository.ProductNutritionRepository;
+import com.drools.repository.UserRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.functionalmodel.RuleEngine;
 import org.apache.http.client.utils.URIBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,6 +40,21 @@ public class UsdaController {
 
     @Autowired
     private IngredientRepository ingredientRepository;
+
+    @Autowired
+    private RuleEngine ruleEngine;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping("/test/{userId}")
+    public User test(@PathVariable Long userId) {
+        User user = userRepository.findById(userId).orElse(new User());
+
+        ruleEngine.fireAllRulesForOneUser(user);
+
+        return user;
+    }
 
     @GetMapping("/foods")
     public List<FoodItem> getFoodsList() {
