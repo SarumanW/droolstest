@@ -1,0 +1,76 @@
+package KieRule;
+
+import java.util.List;
+import org.apache.commons.collections4.CollectionUtils
+import java.util.stream.Collectors
+import java.util.ArrayList
+import java.util.Map;
+import java.util.HashMap
+import lavka.drools.model.entity.Product
+import lavka.drools.model.entity.User
+import lavka.drools.model.entity.RelationUserProduct
+import lavka.drools.model.entity.Diet.DietType
+import lavka.drools.model.entity.Diet
+import lavka.drools.model.entity.Ingredient;
+
+function int compareTwoLists(List composition, List forbiddenProductsRelations) {
+    List<Product> forbiddenProducts = (List<Product>) forbiddenProductsRelations.stream()
+        .map(r -> ((RelationUserProduct)r).getProduct())
+        .collect(Collectors.toList());
+
+    return CollectionUtils.intersection(composition, forbiddenProducts).size();
+}
+
+function boolean dietAvailable(List list, String property) {
+    return ((List<Object>)list.stream()
+    .filter(o -> ((Diet)o).getName().equals(property))
+    .collect(Collectors.toList())).size() > 0;
+}
+
+function boolean checkProductCategory(Product product, DietType dietType) {
+    for (Long restrictedCategoryId : dietType.getDietRestrictionModel().getRestrictedCategoriesIds()) {
+        if (String.valueOf(product.getFoodCode()).startsWith(String.valueOf(restrictedCategoryId))) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function boolean checkProductRestrictedItems(Product product, DietType dietType) {
+    for (String restrictedItem : dietType.getDietRestrictionModel().getRestrictedItems()) {
+        if (product.getName().toLowerCase().contains(restrictedItem.toLowerCase())) {
+            return false;
+        }
+
+        for (Ingredient ingredient : product.getComposition()) {
+            if (ingredient.getName().toLowerCase().contains(restrictedItem.toLowerCase())) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+function void addProductToUserList(User user, Product product) {
+    user.addProductToList(product);
+}
+
+rule "Forbidden products"
+//timer ( cron:* 0/15 * * * ? )
+when
+    product : Product (composition.size() != 0)
+    user: User (forbiddenIngredients.size() != 0, compareTwoLists(product.composition, user.forbiddenIngredients) > 0)
+then
+    addProductToUserList(user, product);
+end;
+
+rule "Fat loss"
+//timer ( cron:* 0/15 * * * ? )
+when
+    user: User (dietAvailable(followedDiets, DietType.FAT_LOSS.getDietName()))
+    product : Product (checkProductCategory(product, DietType.FAT_LOSS) == true && checkProductRestrictedItems(product, DietType.FAT_LOSS))
+then
+    addProductToUserList(user, product);
+end;
