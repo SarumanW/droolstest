@@ -13,6 +13,8 @@ public class Category {
     @Id
     private Long categoryNumber;
 
+    private Long categoryId;
+
     private String categoryName;
 
     @ManyToOne
@@ -51,5 +53,13 @@ public class Category {
 
     public void setSubCategories(List<Category> subCategories) {
         this.subCategories = subCategories;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 }

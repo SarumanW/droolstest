@@ -1,8 +1,6 @@
-package lavka.drools.service;
+package lavka.drools.integrationservice;
 
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import lavka.drools.model.entity.*;
@@ -25,11 +23,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -134,39 +127,17 @@ public class UsdaIntegrationService implements IntegrationService {
     private List<UsdaFoodItem> getDetailedFoodItemsInfo(List<Integer> foodItemsIds) {
         List<UsdaFoodItem> usdaFoodItems = new ArrayList<>();
 
-        try {
-            for (int i = 0; i <= foodItemsIds.size(); i += 20) {
-                HttpClient client = HttpClient.newHttpClient();
+        for (int i = 0; i <= foodItemsIds.size(); i += 20) {
 
-                URIBuilder builder = new URIBuilder();
-                builder.setScheme("https").setHost("api.nal.usda.gov").setPath("/fdc/v1/foods")
-                        .setParameter("api_key", "8ym093tKGYh1r2iecUggVFyU1zveNHcr9eRE6yWZ");
-                URI uri = builder.build();
+            URIBuilder builder = new URIBuilder();
+            builder.setScheme("https").setHost("api.nal.usda.gov").setPath("/fdc/v1/foods")
+                    .setParameter("api_key", apiKey);
 
-                UsdaFoodsSearchCriteria usdaFoodsSearchCriteria = new UsdaFoodsSearchCriteria(
-                        foodItemsIds.subList(i, i + 20 >= foodItemsIds.size() ? foodItemsIds.size() : i + 20),
-                        "full", MAIN_NUTRITION_IDS);
-                ObjectMapper objectMapper = new ObjectMapper();
-                String requestBody = objectMapper
-                        .writerWithDefaultPrettyPrinter()
-                        .writeValueAsString(usdaFoodsSearchCriteria);
+            UsdaFoodsSearchCriteria usdaFoodsSearchCriteria = new UsdaFoodsSearchCriteria(
+                    foodItemsIds.subList(i, i + 20 >= foodItemsIds.size() ? foodItemsIds.size() : i + 20),
+                    "full", MAIN_NUTRITION_IDS);
 
-                HttpRequest request = HttpRequest.newBuilder()
-                        .header("Content-Type", "application/json")
-                        .uri(uri)
-                        .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-                        .build();
-
-                String res = client.send(request,
-                        HttpResponse.BodyHandlers.ofString())
-                        .body();
-                ObjectMapper mapper = new ObjectMapper();
-
-                usdaFoodItems.addAll(mapper.readValue(res, new TypeReference<>() {
-                }));
-            }
-        } catch (URISyntaxException | InterruptedException | IOException e) {
-            e.printStackTrace();
+            usdaFoodItems.addAll(sendListPostHttpRequest(builder, usdaFoodsSearchCriteria, UsdaFoodItem.class));
         }
 
         return usdaFoodItems;
@@ -175,34 +146,16 @@ public class UsdaIntegrationService implements IntegrationService {
     private List<Integer> getSurveyFoodsIds() {
         List<UsdaSimpleFoodItem> usdaSimpleFoodItems = new ArrayList<>();
 
-        try {
-            //TODO: make api call to be universal
-            for (int i = 1; i <= 44; i++) {
-                HttpClient client = HttpClient.newHttpClient();
+        //TODO: make api call to be universal
+        for (int i = 1; i <= 44; i++) {
+            URIBuilder builder = new URIBuilder();
+            builder.setScheme("https").setHost("api.nal.usda.gov").setPath("/fdc/v1/foods/list")
+                    .setParameter("dataType", "Survey (FNDDS)")
+                    .setParameter("pageSize", String.valueOf(PAGE_SIZE))
+                    .setParameter("pageNumber", String.valueOf(i))
+                    .setParameter("api_key", apiKey);
 
-                URIBuilder builder = new URIBuilder();
-                builder.setScheme("https").setHost("api.nal.usda.gov").setPath("/fdc/v1/foods/list")
-                        .setParameter("dataType", "Survey (FNDDS)")
-                        .setParameter("pageSize", String.valueOf(PAGE_SIZE))
-                        .setParameter("pageNumber", String.valueOf(i))
-                        .setParameter("api_key", "8ym093tKGYh1r2iecUggVFyU1zveNHcr9eRE6yWZ");
-                URI uri = builder.build();
-
-                HttpRequest request = HttpRequest.newBuilder()
-                        .uri(uri)
-                        .GET()
-                        .build();
-
-                String res = client.send(request,
-                        HttpResponse.BodyHandlers.ofString())
-                        .body();
-                ObjectMapper mapper = new ObjectMapper();
-
-                usdaSimpleFoodItems.addAll(mapper.readValue(res, new TypeReference<>() {
-                }));
-            }
-        } catch (URISyntaxException | InterruptedException | IOException e) {
-            e.printStackTrace();
+            usdaSimpleFoodItems.addAll(sendListGetHttpRequest(builder, UsdaSimpleFoodItem.class));
         }
 
         return usdaSimpleFoodItems.stream()
