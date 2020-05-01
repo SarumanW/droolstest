@@ -6,21 +6,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ListexCategory {
+public class ListexProductResponse {
 
-    @JsonProperty("cat_id")
-    private Long categoryId;
+    @JsonProperty("apiversion")
+    private int apiVersion;
 
-    @JsonProperty("cat_name")
-    private String categoryName;
-
-    @JsonProperty("cat_parent_id")
-    private Long parentCategoryId;
-
-    @JsonProperty("cat_level")
-    private int categoryLevel;
+    @JsonProperty("result")
+    private List<ListexProduct> result;
 }

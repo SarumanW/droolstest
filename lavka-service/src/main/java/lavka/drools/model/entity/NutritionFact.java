@@ -15,10 +15,10 @@ public class NutritionFact {
     private String name;
 
     public enum NutritionFacts {
-        PROTEIN("203", "Protein"),
-        FAT("204", "Fat"),
-        CARBS("205", "Carbs"),
-        ENERGY("208", "Energy");
+        PROTEIN("1", "Protein"),
+        FAT("2", "Fat"),
+        CARBS("3", "Carbs"),
+        ENERGY("4", "Energy");
 
         private String code;
         private String name;
@@ -26,6 +26,10 @@ public class NutritionFact {
         NutritionFacts(String code, String name) {
             this.code = code;
             this.name = name;
+        }
+
+        public String getCode() {
+            return code;
         }
 
         public static List<NutritionFact> getNutritionFacts() {

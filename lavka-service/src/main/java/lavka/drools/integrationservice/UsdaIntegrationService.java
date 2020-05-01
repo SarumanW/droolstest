@@ -3,13 +3,12 @@ package lavka.drools.integrationservice;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import lavka.drools.model.entity.*;
-import lavka.drools.model.integration.usda.UsdaFoodIngredient;
-import lavka.drools.model.integration.usda.UsdaFoodItem;
-import lavka.drools.model.integration.usda.UsdaFoodsSearchCriteria;
-import lavka.drools.model.integration.usda.UsdaSimpleFoodItem;
+import lavka.drools.model.entity.Category;
+import lavka.drools.model.entity.NutritionFact;
+import lavka.drools.model.entity.Product;
+import lavka.drools.model.entity.RelationProductNutrition;
+import lavka.drools.model.integration.usda.*;
 import lavka.drools.repository.CategoryRepository;
-import lavka.drools.repository.IngredientRepository;
 import lavka.drools.repository.ProductNutritionRepository;
 import org.apache.http.client.utils.URIBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,9 +40,6 @@ public class UsdaIntegrationService implements IntegrationService {
     private ProductNutritionRepository productNutritionRepository;
 
     @Autowired
-    private IngredientRepository ingredientRepository;
-
-    @Autowired
     private CategoryRepository categoryRepository;
 
     @Value("${usda.key}")
@@ -54,13 +52,6 @@ public class UsdaIntegrationService implements IntegrationService {
         List<UsdaFoodItem> detailedUsdaFoodItemsInfo = this.getDetailedFoodItemsInfo(surveyFoods);
 
         List<RelationProductNutrition> productNutritions = this.fillProductNutritionsList(detailedUsdaFoodItemsInfo);
-
-        List<Ingredient> distinctIngredients = productNutritions.stream()
-                .map(RelationProductNutrition::getProduct)
-                .flatMap(product -> product.getComposition().stream())
-                .distinct()
-                .collect(Collectors.toList());
-        ingredientRepository.saveAll(distinctIngredients);
 
         productNutritionRepository.saveAll(productNutritions);
     }
@@ -100,28 +91,44 @@ public class UsdaIntegrationService implements IntegrationService {
     }
 
     private List<RelationProductNutrition> fillProductNutritionsList(List<UsdaFoodItem> detailedUsdaFoodItemsInfo) {
-        List<RelationProductNutrition> productNutritions = new ArrayList<>();
+        List<RelationProductNutrition> relationProductNutritionList = new ArrayList<>();
+
         for (UsdaFoodItem usdaFoodItem : detailedUsdaFoodItemsInfo) {
             Product product = new Product(usdaFoodItem.getFdcId(), usdaFoodItem.getFoodCode(), usdaFoodItem.getDescription());
 
-            for (UsdaFoodIngredient usdaFoodIngredient : usdaFoodItem.getInputFoods()) {
-                product.getComposition().add(new Ingredient(usdaFoodIngredient.getIngredientCode(),
-                        usdaFoodIngredient.getFoodDescription()));
+            product.setComposition(usdaFoodItem.getInputFoods()
+                    .stream()
+                    .map(UsdaFoodIngredient::getFoodDescription)
+                    .collect(Collectors.joining(",")));
+
+            Map<String, String> productNutritions = new HashMap<>();
+            for (UsdaFoodNutrient usdaFoodNutrient : usdaFoodItem.getUsdaFoodNutrients()) {
+                switch (usdaFoodNutrient.getNutrient().getNumber()) {
+                    case "203":
+                        productNutritions.put(NutritionFact.NutritionFacts.PROTEIN.getCode(), String.valueOf(usdaFoodNutrient.getAmount()));
+                        break;
+                    case "204":
+                        productNutritions.put(NutritionFact.NutritionFacts.FAT.getCode(), String.valueOf(usdaFoodNutrient.getAmount()));
+                        break;
+                    case "205":
+                        productNutritions.put(NutritionFact.NutritionFacts.CARBS.getCode(), String.valueOf(usdaFoodNutrient.getAmount()));
+                        break;
+                    case "208":
+                        productNutritions.put(NutritionFact.NutritionFacts.ENERGY.getCode(), String.valueOf(usdaFoodNutrient.getAmount()));
+                        break;
+                }
             }
 
             for (NutritionFact nutritionFact : NutritionFact.NutritionFacts.getNutritionFacts()) {
-                usdaFoodItem.getUsdaFoodNutrients()
-                        .stream()
-                        .filter(n -> n.getNutrient().getNumber().equals(nutritionFact.getId().toString()))
-                        .findFirst()
-                        .ifPresent(foodNutrient ->
-                                productNutritions.add(new RelationProductNutrition(product, nutritionFact,
-                                        foodNutrient.getAmount())));
+                String nutritionValue = productNutritions.get(nutritionFact.getId().toString());
 
+                if (nutritionValue != null) {
+                    relationProductNutritionList.add(new RelationProductNutrition(product, nutritionFact, nutritionValue));
+                }
             }
         }
 
-        return productNutritions;
+        return relationProductNutritionList;
     }
 
     private List<UsdaFoodItem> getDetailedFoodItemsInfo(List<Integer> foodItemsIds) {

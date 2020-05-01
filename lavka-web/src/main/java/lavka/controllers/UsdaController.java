@@ -38,6 +38,8 @@ public class UsdaController {
     @GetMapping("/categories")
     public void getFoodsList() {
         integrationService.importCategories();
+
+        integrationService.importProductBase();
     }
 
 }

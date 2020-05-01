@@ -50,11 +50,11 @@ public enum Operation {
                 isAllowed = false;
             }
 
-            for (Ingredient ingredient : userProductPair.getProduct().getComposition()) {
-                if (ingredient.getName().toLowerCase().contains(restrictedItem.toLowerCase())) {
-                    isAllowed = false;
-                }
-            }
+//            for (Ingredient ingredient : userProductPair.getProduct().getComposition()) {
+//                if (ingredient.getName().toLowerCase().contains(restrictedItem.toLowerCase())) {
+//                    isAllowed = false;
+//                }
+//            }
         }
 
         if (isAllowed) {

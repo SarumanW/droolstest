@@ -24,9 +24,9 @@ public class RelationProductNutrition {
     @JoinColumn(name = "nutrition_fact_id")
     private NutritionFact nutritionFact;
 
-    private double value;
+    private String value;
 
-    public RelationProductNutrition(Product product, NutritionFact nutritionFact, Double value) {
+    public RelationProductNutrition(Product product, NutritionFact nutritionFact, String value) {
         this.product = product;
         this.nutritionFact = nutritionFact;
         this.value = value;

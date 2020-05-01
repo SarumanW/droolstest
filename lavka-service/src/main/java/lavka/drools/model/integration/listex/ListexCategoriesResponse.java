@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ListexResponse {
+public class ListexCategoriesResponse {
 
     @JsonProperty("apiversion")
     private int apiVersion;

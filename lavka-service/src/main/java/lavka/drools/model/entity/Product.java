@@ -1,5 +1,7 @@
 package lavka.drools.model.entity;
 
+import com.sun.istack.Nullable;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +14,25 @@ public class Product {
 
     private Long foodCode;
 
+    @Nullable
+    private Long categoryId;
+
+    @Nullable
+    private String imagePath;
+
     private String name;
 
-    @ManyToMany
-    @JoinTable(
-            name = "product_ingredient",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
-    private List<Ingredient> composition = new ArrayList<>();
+    @Nullable
+    private String shortName;
+
+    @Nullable
+    private String expirationMonths;
+
+    @Nullable
+    private String expirationDays;
+
+    @Lob
+    private String composition;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<RelationProductNutrition> nutritionFacts = new ArrayList<>();
@@ -28,6 +41,10 @@ public class Product {
         this.id = Long.valueOf(id);
         this.foodCode = Long.valueOf(foodCode);
         this.name = name;
+    }
+
+    public Product(Long id) {
+        this.id = id;
     }
 
     public Product() {
@@ -57,11 +74,11 @@ public class Product {
         this.name = name;
     }
 
-    public List<Ingredient> getComposition() {
+    public String getComposition() {
         return composition;
     }
 
-    public void setComposition(List<Ingredient> composition) {
+    public void setComposition(String composition) {
         this.composition = composition;
     }
 
@@ -71,5 +88,45 @@ public class Product {
 
     public void setNutritionFacts(List<RelationProductNutrition> nutritionFacts) {
         this.nutritionFacts = nutritionFacts;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public String getShortName() {
+        return shortName;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    public String getExpirationMonths() {
+        return expirationMonths;
+    }
+
+    public void setExpirationMonths(String expirationMonths) {
+        this.expirationMonths = expirationMonths;
+    }
+
+    public String getExpirationDays() {
+        return expirationDays;
+    }
+
+    public void setExpirationDays(String expirationDays) {
+        this.expirationDays = expirationDays;
     }
 }
