@@ -42,7 +42,7 @@ public class User {
     private boolean supportsSeasonality;
 
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @Where(clause = "shown = true")
     private List<RelationUserProduct> userProducts;
 

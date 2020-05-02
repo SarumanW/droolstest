@@ -1,15 +1,8 @@
 package lavka.drools.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @SequenceGenerator(name = "user_prod_seq", allocationSize = 1)
 public class RelationUserProduct {
 
@@ -31,5 +24,46 @@ public class RelationUserProduct {
         this.user = user;
         this.product = product;
         this.shown = true;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public boolean isShown() {
+        return shown;
+    }
+
+    public void setShown(boolean shown) {
+        this.shown = shown;
+    }
+
+    public RelationUserProduct(Product product, User user, boolean shown) {
+        this.product = product;
+        this.user = user;
+        this.shown = shown;
+    }
+
+    public RelationUserProduct() {
     }
 }

@@ -188,7 +188,7 @@ public class ListexIntegrationService implements IntegrationService {
 
         List<Category> thirdLevelCategories = new ArrayList<>();
 
-        long idCounter = 0;
+        long idCounter = 10;
         for (ListexCategory category : categoryList) {
             if (category.getParentCategoryId().equals(ROOT_CATEGORY_ID)) {
                 thirdLevelCategories.add(new Category(category.getCategoryId(),
@@ -199,7 +199,7 @@ public class ListexIntegrationService implements IntegrationService {
             }
         }
 
-        idCounter = 0;
+        idCounter = 10;
         for (Category category : thirdLevelCategories) {
             for (ListexCategory listexCategory : categoryList) {
                 if (listexCategory.getParentCategoryId().equals(category.getCategoryNumber())) {
@@ -211,7 +211,7 @@ public class ListexIntegrationService implements IntegrationService {
                 }
             }
 
-            idCounter = 0;
+            idCounter = 10;
         }
 
         categoryRepository.saveAll(thirdLevelCategories);

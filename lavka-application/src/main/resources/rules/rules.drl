@@ -1,7 +1,7 @@
 package KieRule;
 
 import java.util.List;
-import org.apache.commons.collections4.CollectionUtils
+
 import java.util.stream.Collectors
 import java.util.ArrayList
 import java.util.Map;
@@ -11,20 +11,28 @@ import lavka.drools.model.entity.User
 import lavka.drools.model.entity.RelationUserProduct
 import lavka.drools.model.entity.Diet.DietType
 import lavka.drools.model.entity.Diet
-import lavka.drools.model.entity.Ingredient;
+import lavka.drools.model.entity.Ingredient
+import lavka.drools.model.entity.RelationUserIngredient;
 
-function int compareTwoLists(List composition, List forbiddenProductsRelations) {
-    List<Product> forbiddenProducts = (List<Product>) forbiddenProductsRelations.stream()
-        .map(r -> ((RelationUserProduct)r).getProduct())
+function boolean checkForbiddenItems(Product product, List forbiddenIngredientsRelations) {
+    List<Ingredient> forbiddenIngredients = (List<Ingredient>) forbiddenIngredientsRelations.stream()
+        .map(r -> ((RelationUserIngredient)r).getIngredient())
         .collect(Collectors.toList());
 
-    return CollectionUtils.intersection(composition, forbiddenProducts).size();
+    for (Ingredient ingredient : forbiddenIngredients) {
+        if (product.getComposition().contains(ingredient.getName())) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
-function boolean dietAvailable(List list, String property) {
+function boolean dietAvailable(List list, int id) {
     return ((List<Object>)list.stream()
-    .filter(o -> ((Diet)o).getName().equals(property))
-    .collect(Collectors.toList())).size() > 0;
+    .filter(o -> ((Diet)o).getId() == id)
+    .collect(Collectors.toList()))
+    .size() > 0;
 }
 
 function boolean checkProductCategory(Product product, DietType dietType) {
@@ -39,12 +47,14 @@ function boolean checkProductCategory(Product product, DietType dietType) {
 
 function boolean checkProductRestrictedItems(Product product, DietType dietType) {
     for (String restrictedItem : dietType.getDietRestrictionModel().getRestrictedItems()) {
-        if (product.getName().toLowerCase().contains(restrictedItem.toLowerCase())) {
-            return false;
+        if (product.getName() != null) {
+            if (product.getName().toLowerCase().contains(restrictedItem.toLowerCase())) {
+                return false;
+            }
         }
 
-        for (Ingredient ingredient : product.getComposition()) {
-            if (ingredient.getName().toLowerCase().contains(restrictedItem.toLowerCase())) {
+        if(product.getComposition() != null) {
+            if (product.getComposition().length() > 0 && product.getComposition().contains(restrictedItem)) {
                 return false;
             }
         }
@@ -60,8 +70,8 @@ function void addProductToUserList(User user, Product product) {
 rule "Forbidden products"
 //timer ( cron:* 0/15 * * * ? )
 when
-    product : Product (composition.size() != 0)
-    user: User (forbiddenIngredients.size() != 0, compareTwoLists(product.composition, user.forbiddenIngredients) > 0)
+    product : Product (composition != null && name != null)
+    user: User (forbiddenIngredients.size() != 0, checkForbiddenItems(product, user.forbiddenIngredients) == true)
 then
     addProductToUserList(user, product);
 end;
@@ -69,7 +79,7 @@ end;
 rule "Fat loss"
 //timer ( cron:* 0/15 * * * ? )
 when
-    user: User (dietAvailable(followedDiets, DietType.FAT_LOSS.getDietName()))
+    user: User (dietAvailable(followedDiets, DietType.FAT_LOSS.getId()))
     product : Product (checkProductCategory(product, DietType.FAT_LOSS) == true && checkProductRestrictedItems(product, DietType.FAT_LOSS))
 then
     addProductToUserList(user, product);
