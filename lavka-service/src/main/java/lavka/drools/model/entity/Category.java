@@ -1,5 +1,8 @@
 package lavka.drools.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -17,9 +20,11 @@ public class Category {
 
     private String categoryName;
 
+    @JsonIgnore
     @ManyToOne
     private Category parentCategory;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL)
     private List<Category> subCategories;
 

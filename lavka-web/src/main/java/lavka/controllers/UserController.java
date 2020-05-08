@@ -20,4 +20,8 @@ public class UserController {
     public User getUserByLogin(@PathVariable String login) {
         return userRepository.findByLogin(login);
     }
+
+    public User updateUser(User user) {
+        return null;
+    }
 }

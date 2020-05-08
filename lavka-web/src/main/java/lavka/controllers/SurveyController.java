@@ -41,7 +41,7 @@ public class SurveyController {
     @Autowired
     private ProductRepository productRepository;
 
-    @GetMapping("/getQuestions")
+    @GetMapping("/questions")
     public ResponseEntity<List<QuestionModel>> getQuestions() {
         QuestionModel diets = new QuestionModel(Question.DIETS_QUESTION.getText(),
                 ((List<Diet>) dietRepository.findAll())

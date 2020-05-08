@@ -63,6 +63,8 @@ public class User {
         }
     }
 
+    //TODO: add likes
+
     @Transient
     private Map<Attribute, Object> attributeObjectMap = new HashMap<>();
 }
