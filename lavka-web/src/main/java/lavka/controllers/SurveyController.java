@@ -89,6 +89,8 @@ public class SurveyController {
 
                     user.getFollowedDiets().clear();
                     user.getFollowedDiets().addAll(userDiets);
+                } else {
+                    user.setForbiddenIngredients(String.join(",", v));
                 }
             });
 

@@ -1,12 +1,14 @@
 package lavka.drools.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -27,6 +29,13 @@ public class Category {
     @JsonManagedReference
     @OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL)
     private List<Category> subCategories;
+
+    public Category(Long categoryNumber) {
+        this.categoryNumber = categoryNumber;
+        this.categoryId = 0L;
+        this.categoryName = "Усі продукти";
+        this.subCategories = Collections.singletonList(new Category());
+    }
 
     public Long getCategoryNumber() {
         return categoryNumber;

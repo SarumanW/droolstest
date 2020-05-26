@@ -1,6 +1,9 @@
 package lavka.drools.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.Nullable;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -35,6 +38,8 @@ public class Product {
     private String composition;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonManagedReference
     private List<RelationProductNutrition> nutritionFacts = new ArrayList<>();
 
     public Product(String id, String foodCode, String name) {

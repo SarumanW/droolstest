@@ -1,6 +1,7 @@
 package lavka.drools.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lavka.functionalmodel.Attribute;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -44,12 +45,11 @@ public class User {
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @Where(clause = "shown = true")
+    @JsonManagedReference
     private List<RelationUserProduct> userProducts;
 
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "user")
-    @Where(clause = "forbidden = true")
-    private List<RelationUserIngredient> forbiddenIngredients;
+    @Lob
+    private String forbiddenIngredients;
 
     public synchronized void addProductToList(Product product) {
         if (userProducts == null) {

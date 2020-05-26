@@ -52,9 +52,10 @@ public class ProductController {
 
         //integrationService.importProductBase();
 
-        Iterable<Category> all = categoryRepository.findAll();
+        List<Category> all = (List<Category>) categoryRepository.findAll();
+        all.add(new Category(0L));
 
-        return ResponseEntity.ok((List<Category>) all);
+        return ResponseEntity.ok(all);
     }
 
     @GetMapping(value = "/{categoryId}/products")
