@@ -22,7 +22,9 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public User updateUser(@RequestBody User user) {
-        return userRepository.save(user);
+    public UserResponse updateUser(@RequestBody User user) {
+        userRepository.save(user);
+
+        return new UserResponse(user);
     }
 }

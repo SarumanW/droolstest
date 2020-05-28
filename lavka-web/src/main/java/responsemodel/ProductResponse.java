@@ -18,6 +18,8 @@ public class ProductResponse {
 
     private String imagePath;
 
+    private Long categoryId;
+
     private String name;
 
     private String shortName;
@@ -35,6 +37,7 @@ public class ProductResponse {
         this.shortName = product.getShortName();
         this.expiration = product.getExpirationMonths() + " m " + product.getExpirationDays() + " d";
         this.composition = product.getComposition();
+        this.categoryId = product.getFoodCode();
 
         this.nutritionFacts = new HashMap<>();
         for (RelationProductNutrition relationProductNutrition : product.getNutritionFacts()) {

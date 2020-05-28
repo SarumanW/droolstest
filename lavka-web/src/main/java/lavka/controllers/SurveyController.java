@@ -1,9 +1,6 @@
 package lavka.controllers;
 
-import lavka.drools.model.entity.Diet;
-import lavka.drools.model.entity.Ingredient;
-import lavka.drools.model.entity.Product;
-import lavka.drools.model.entity.User;
+import lavka.drools.model.entity.*;
 import lavka.drools.model.survey.Question;
 import lavka.drools.model.survey.QuestionModel;
 import lavka.drools.model.survey.SurveyResponse;
@@ -17,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import responsemodel.UserResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +57,7 @@ public class SurveyController {
     }
 
     @PostMapping("/sendAnswers")
-    public ResponseEntity<User> sendAnswers(@RequestBody SurveyResponse surveyResponse) {
+    public UserResponse sendAnswers(@RequestBody SurveyResponse surveyResponse) {
         Iterable<Product> all = productRepository.findAll();
 
         for (Product product : all) {
@@ -97,11 +95,21 @@ public class SurveyController {
             session.insert(user);
             session.fireAllRules();
 
-            userRepository.save(user);
+            for (Product product : user.getRuleProducts()) {
+                RelationUserProduct relationUserProduct = new RelationUserProduct(product, user, true);
 
-            return new ResponseEntity<>(user, HttpStatus.OK);
+                if (user.getUserProducts() == null) {
+                    user.setUserProducts(new ArrayList<>());
+                }
+
+                user.getUserProducts().add(relationUserProduct);
+            }
+
+            User savedUser = userRepository.save(user);
+
+            return new UserResponse(savedUser);
         } else {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return new UserResponse();
         }
     }
 }

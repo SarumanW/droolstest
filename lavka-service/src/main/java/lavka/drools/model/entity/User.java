@@ -1,5 +1,6 @@
 package lavka.drools.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lavka.functionalmodel.Attribute;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Where;
+import org.springframework.security.core.parameters.P;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -51,15 +53,30 @@ public class User {
     @Lob
     private String forbiddenIngredients;
 
+    @Transient
+    @JsonIgnore
+    private List<Product> ruleProducts;
+
     public synchronized void addProductToList(Product product) {
-        if (userProducts == null) {
-            userProducts = new ArrayList<>();
+        if (ruleProducts == null) {
+            ruleProducts = new ArrayList<>();
         }
 
-        RelationUserProduct relationUserProduct = new RelationUserProduct(this, product);
+        if (!ruleProducts.contains(product)) {
+            ruleProducts.add(product);
+        } else {
+            System.out.println("Worked!");
+        }
+    }
 
-        if (userProducts.indexOf(relationUserProduct) == -1) {
-            userProducts.add(relationUserProduct);
+    public synchronized void deleteProductFromList(Product product) {
+        if (ruleProducts != null) {
+
+            if (ruleProducts.contains(product)) {
+                ruleProducts.remove(product);
+            } else {
+                System.out.println("Worked Worked!");
+            }
         }
     }
 

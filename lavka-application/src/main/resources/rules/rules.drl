@@ -14,13 +14,16 @@ import lavka.drools.model.entity.Diet
 import lavka.drools.model.entity.Ingredient
 import lavka.drools.model.entity.RelationUserIngredient;
 
-function boolean checkForbiddenItems(Product product, List forbiddenIngredientsRelations) {
-    List<Ingredient> forbiddenIngredients = (List<Ingredient>) forbiddenIngredientsRelations.stream()
-        .map(r -> ((RelationUserIngredient)r).getIngredient())
-        .collect(Collectors.toList());
+function boolean checkForbiddenItems(Product product, String forbiddenIngredients) {
+    String[] forbiddenIngredientsList = forbiddenIngredients.split(",");
 
-    for (Ingredient ingredient : forbiddenIngredients) {
-        if (product.getComposition().contains(ingredient.getName())) {
+    for (String ingredient : forbiddenIngredientsList) {
+
+        if (product.getComposition().toLowerCase().contains(ingredient.toLowerCase())) {
+            return false;
+        }
+
+        if (product.getName().toLowerCase().contains(ingredient.toLowerCase())) {
             return false;
         }
     }
@@ -67,20 +70,51 @@ function void addProductToUserList(User user, Product product) {
     user.addProductToList(product);
 }
 
+function void deleteProductFromUserList(User user, Product product) {
+    user.deleteProductFromList(product);
+}
+
 rule "Forbidden products"
-//timer ( cron:* 0/15 * * * ? )
+salience 1
 when
     product : Product (composition != null && name != null)
-    user: User (forbiddenIngredients.size() != 0, checkForbiddenItems(product, user.forbiddenIngredients) == true)
+    user: User (forbiddenIngredients != null, checkForbiddenItems(product, user.forbiddenIngredients) == false)
 then
-    addProductToUserList(user, product);
+    deleteProductFromUserList(user, product);
 end;
 
-rule "Fat loss"
-//timer ( cron:* 0/15 * * * ? )
+rule "Fat loss add"
+salience 9
 when
     user: User (dietAvailable(followedDiets, DietType.FAT_LOSS.getId()))
     product : Product (checkProductCategory(product, DietType.FAT_LOSS) == true && checkProductRestrictedItems(product, DietType.FAT_LOSS))
 then
     addProductToUserList(user, product);
+end;
+
+rule "Fat loss delete"
+salience 5
+when
+    user: User (dietAvailable(followedDiets, DietType.FAT_LOSS.getId()))
+    product : Product (checkProductCategory(product, DietType.FAT_LOSS) == false || checkProductRestrictedItems(product, DietType.FAT_LOSS) == false)
+then
+    deleteProductFromUserList(user, product);
+end;
+
+rule "Vegan add"
+salience 10
+when
+    user: User (dietAvailable(followedDiets, DietType.VEGAN.getId()))
+    product : Product (checkProductCategory(product, DietType.VEGAN) == true && checkProductRestrictedItems(product, DietType.VEGAN))
+then
+    addProductToUserList(user, product);
+end;
+
+rule "Vegan delete"
+salience 5
+when
+    user: User (dietAvailable(followedDiets, DietType.VEGAN.getId()))
+    product : Product (checkProductCategory(product, DietType.VEGAN) == false || checkProductRestrictedItems(product, DietType.VEGAN) == false)
+then
+    deleteProductFromUserList(user, product);
 end;
