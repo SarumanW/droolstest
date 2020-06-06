@@ -3,22 +3,19 @@ package lavka.controllers;
 
 import lavka.drools.integrationservice.IntegrationService;
 import lavka.drools.model.entity.Category;
+import lavka.drools.model.entity.Product;
 import lavka.drools.model.entity.RelationUserProduct;
 import lavka.drools.model.entity.User;
 import lavka.drools.repository.CategoryRepository;
+import lavka.drools.repository.ProductRepository;
 import lavka.drools.repository.UserRepository;
 import lavka.functionalmodel.RuleEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import responsemodel.ProductResponse;
+import org.springframework.web.bind.annotation.*;
+import responsemodel.UserResponse;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/food")
@@ -35,6 +32,9 @@ public class ProductController {
     private UserRepository userRepository;
 
     @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
     private CategoryRepository categoryRepository;
 
     @GetMapping("/test/{userId}")
@@ -47,29 +47,44 @@ public class ProductController {
     }
 
     @GetMapping(value = "/categories")
-    public ResponseEntity<List<Category>> getCategories() {
-        //integrationService.importCategories();
-
-        //integrationService.importProductBase();
+    public List<Category> getCategories() {
+//        integrationService.importCategories();
+//
+//        integrationService.importProductBase();
 
         List<Category> all = (List<Category>) categoryRepository.findAll();
         all.add(new Category(0L));
 
-        return ResponseEntity.ok(all);
+        return all;
     }
 
-    @GetMapping(value = "/{categoryId}/products")
-    public ResponseEntity<List<ProductResponse>> getProducts(@PathVariable Long categoryId) {
-        User user = userRepository.findById(1L).orElse(new User());
+    @PostMapping(value = "/like/{productId}")
+    public UserResponse likeProduct(@RequestBody User currentUser, @PathVariable Long productId) {
+        User user = userRepository.findById(currentUser.getId()).orElse(new User());
 
-        List<ProductResponse> products = user.getUserProducts().stream()
-                .map(RelationUserProduct::getProduct)
-                .filter(p -> p.getCategoryId().equals(categoryId))
-                .distinct()
-                .map(ProductResponse::new)
-                .collect(Collectors.toList());
+        Product product = productRepository.findById(productId).orElse(new Product());
 
-        return ResponseEntity.ok(products);
+        user.getLikedProducts().add(new RelationUserProduct(product, user, true, true));
+
+        User savedUser = userRepository.save(user);
+
+        return new UserResponse(savedUser);
+    }
+
+    @PostMapping(value = "/unlike/{productId}")
+    public UserResponse unlikeProduct(@RequestBody User currentUser, @PathVariable Long productId) {
+        User user = userRepository.findById(currentUser.getId()).orElse(new User());
+
+        RelationUserProduct relationUserProduct = user.getLikedProducts().stream()
+                .filter(r -> r.getProduct().getId().equals(productId))
+                .findFirst()
+                .orElse(null);
+
+        user.getLikedProducts().remove(relationUserProduct);
+
+        User savedUser = userRepository.save(user);
+
+        return new UserResponse(savedUser);
     }
 
 }

@@ -67,6 +67,14 @@ public class RelationUserProduct {
         this.product = product;
         this.user = user;
         this.shown = shown;
+        this.liked = false;
+    }
+
+    public RelationUserProduct(Product product, User user, boolean shown, boolean liked) {
+        this.product = product;
+        this.user = user;
+        this.shown = shown;
+        this.liked = liked;
     }
 
     public RelationUserProduct() {

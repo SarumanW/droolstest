@@ -23,6 +23,8 @@ public class UserResponse {
 
     private List<ProductResponse> products;
 
+    private List<ProductResponse> likedProducts;
+
     private List<String> restrictedItems;
 
     private List<String> diets;
@@ -39,6 +41,12 @@ public class UserResponse {
                 .collect(Collectors.toList());
 
         this.products = user.getUserProducts().stream()
+                .map(RelationUserProduct::getProduct)
+                .distinct()
+                .map(ProductResponse::new)
+                .collect(Collectors.toList());
+
+        this.likedProducts = user.getLikedProducts().stream()
                 .map(RelationUserProduct::getProduct)
                 .distinct()
                 .map(ProductResponse::new)

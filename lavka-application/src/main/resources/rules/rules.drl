@@ -118,3 +118,21 @@ when
 then
     deleteProductFromUserList(user, product);
 end;
+
+rule "Diabetes add"
+salience 10
+when
+    user: User (dietAvailable(followedDiets, DietType.DIABETES.getId()))
+    product : Product (checkProductCategory(product, DietType.DIABETES) == true && checkProductRestrictedItems(product, DietType.DIABETES))
+then
+    addProductToUserList(user, product);
+end;
+
+rule "Diabetes delete"
+salience 5
+when
+    user: User (dietAvailable(followedDiets, DietType.DIABETES.getId()))
+    product : Product (checkProductCategory(product, DietType.DIABETES) == false || checkProductRestrictedItems(product, DietType.DIABETES) == false)
+then
+    deleteProductFromUserList(user, product);
+end;

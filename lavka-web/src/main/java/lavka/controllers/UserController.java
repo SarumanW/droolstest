@@ -5,6 +5,7 @@ import lavka.drools.model.entity.User;
 import lavka.drools.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import responsemodel.UserResponse;
 
@@ -16,6 +17,9 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @GetMapping("/{login}")
     public UserResponse getUserByLogin(@PathVariable String login) {
         User user = userRepository.findByLogin(login);
@@ -25,12 +29,17 @@ public class UserController {
         return new UserResponse(user);
     }
 
-    @PostMapping("/save")
+    @PostMapping("/changePassword")
     public UserResponse updateUser(@RequestBody User user) {
-        userRepository.save(user);
+        User userByLogin = userRepository.findByLogin(user.getLogin());
+
+        userByLogin.setPassword(bCryptPasswordEncoder.encode
+                (user.getPassword()));
+
+        User savedUser = userRepository.save(user);
 
         log.info("UserController.updateUser | User with login {} is updated", user.getLogin());
 
-        return new UserResponse(user);
+        return new UserResponse(savedUser);
     }
 }
