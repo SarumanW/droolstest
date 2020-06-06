@@ -10,13 +10,17 @@ import lavka.drools.repository.CategoryRepository;
 import lavka.drools.repository.ProductRepository;
 import lavka.drools.repository.UserRepository;
 import lavka.functionalmodel.RuleEngine;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
+import responsemodel.ProductResponse;
 import responsemodel.UserResponse;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/food")
 public class ProductController {
@@ -37,13 +41,15 @@ public class ProductController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @GetMapping("/test/{userId}")
-    public User test(@PathVariable Long userId) {
-        User user = userRepository.findById(userId).orElse(new User());
+    @GetMapping("/products")
+    public List<ProductResponse> getAllProducts() {
+        List<Product> products = (List<Product>) productRepository.findAll();
 
-        ruleEngine.fireAllRulesForOneUser(user);
+        log.info("ProductController.getAllProducts | products retrieved");
 
-        return user;
+        return products.stream()
+                .map(ProductResponse::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping(value = "/categories")
@@ -54,6 +60,8 @@ public class ProductController {
 
         List<Category> all = (List<Category>) categoryRepository.findAll();
         all.add(new Category(0L));
+
+        log.info("ProductController.getCategories | categories retrieved");
 
         return all;
     }
@@ -67,6 +75,8 @@ public class ProductController {
         user.getLikedProducts().add(new RelationUserProduct(product, user, true, true));
 
         User savedUser = userRepository.save(user);
+
+        log.info("ProductController.likeProduct | User {userId} liked product {productId}", savedUser.getId(), productId);
 
         return new UserResponse(savedUser);
     }
@@ -83,6 +93,8 @@ public class ProductController {
         user.getLikedProducts().remove(relationUserProduct);
 
         User savedUser = userRepository.save(user);
+
+        log.info("ProductController.unlikeProduct | User {userId} unliked product {productId}", savedUser.getId(), productId);
 
         return new UserResponse(savedUser);
     }
