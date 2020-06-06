@@ -23,6 +23,8 @@ public class RelationUserProduct {
 
     private boolean shown;
 
+    private boolean liked;
+
     public RelationUserProduct(User user, Product product) {
         this.user = user;
         this.product = product;
@@ -68,5 +70,13 @@ public class RelationUserProduct {
     }
 
     public RelationUserProduct() {
+    }
+
+    public boolean isLiked() {
+        return liked;
+    }
+
+    public void setLiked(boolean liked) {
+        this.liked = liked;
     }
 }

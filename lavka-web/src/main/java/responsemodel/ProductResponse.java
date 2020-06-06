@@ -35,7 +35,15 @@ public class ProductResponse {
         this.imagePath = product.getImagePath();
         this.name = product.getName();
         this.shortName = product.getShortName();
-        this.expiration = product.getExpirationMonths() + " m " + product.getExpirationDays() + " d";
+
+        if (product.getExpirationMonths() != null) {
+            this.expiration = product.getExpirationMonths() + " m";
+        } else if (product.getExpirationDays() != null) {
+            this.expiration = product.getExpirationDays() + " d";
+        } else {
+            this.expiration = "-";
+        }
+
         this.composition = product.getComposition();
         this.categoryId = product.getFoodCode();
 

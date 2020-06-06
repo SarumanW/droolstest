@@ -56,8 +56,8 @@ function boolean checkProductRestrictedItems(Product product, DietType dietType)
             }
         }
 
-        if(product.getComposition() != null) {
-            if (product.getComposition().length() > 0 && product.getComposition().contains(restrictedItem)) {
+        if (product.getComposition() != null) {
+            if (product.getComposition().length() > 0 && product.getComposition().toLowerCase().contains(restrictedItem.toLowerCase())) {
                 return false;
             }
         }

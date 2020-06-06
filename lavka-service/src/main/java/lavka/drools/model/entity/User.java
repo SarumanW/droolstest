@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Where;
-import org.springframework.security.core.parameters.P;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -50,6 +49,12 @@ public class User {
     @JsonManagedReference
     private List<RelationUserProduct> userProducts;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @Where(clause = "liked = true")
+    @JsonManagedReference
+    private List<RelationUserProduct> likedProducts;
+
     @Lob
     private String forbiddenIngredients;
 
@@ -64,19 +69,12 @@ public class User {
 
         if (!ruleProducts.contains(product)) {
             ruleProducts.add(product);
-        } else {
-            System.out.println("Worked!");
         }
     }
 
     public synchronized void deleteProductFromList(Product product) {
         if (ruleProducts != null) {
-
-            if (ruleProducts.contains(product)) {
-                ruleProducts.remove(product);
-            } else {
-                System.out.println("Worked Worked!");
-            }
+            ruleProducts.remove(product);
         }
     }
 
